@@ -38,9 +38,9 @@
 	COLL   = "C" + rand
 
 	function units(size) {
-		return size > 1048576 ? (0|(size / 1048576)) + " MB " :
-		size > 1024 ? (0|(size / 1024)) + " KB " :
-		size + "B "
+		return size > 1048576 ? (0|(size / 1048576)) + "MB" :
+		size > 1024 ? (0|(size / 1024)) + "KB" :
+		size + "B"
 	}
 
 	function fragment(a, b) {
@@ -109,9 +109,9 @@
 			'i.I', ':after{content:attr(data-content)}' +
 			'i.C', '+.D', '{width:1px; height:1px; margin:0; padding:0; border:0; display:inline-block; overflow:hidden}' +
 			'.S', '{color:#2AA198}' + // string
-			'.K', '{color:#B58900}' + // value
-			'.E', '{color:#BCADAD}' + //
-			'.B', '{color:#657A81}' + // number
+			'.K', '{color:#B58900}' + // key
+			'.E', '{color:#BCADAD}' + // error
+			'.B', '{color:#657A81}' + // number and bool
 			'.E', ',.B', '{font-style: italic}' + // number bold
 			'h3.E', '{margin:0 0 1em}'
 		].join(rand)

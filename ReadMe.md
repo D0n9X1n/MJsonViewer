@@ -1,7 +1,7 @@
 MJSONVIEW
 ---
 
-Yet, just another jsonview for Firefox.
+Yet, just another jsonview plugin for Firefox.
 
 
 ###Thanks
