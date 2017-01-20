@@ -1,6 +1,6 @@
 MJsonViewer
 ---
-[![GitHub release](https://img.shields.io/badge/release-v1.0-green.svg)](https://github.com/MikeCoder/MJsonViewer)
+[![GitHub release](https://img.shields.io/badge/release-v0.2-green.svg)](https://github.com/MikeCoder/MJsonViewer)
 
 Yet, just another jsonview plugin for Firefox.
 
@@ -12,7 +12,13 @@ Yet, just another jsonview plugin for Firefox.
 > ![Appearance](./images/image.jpeg)
 
 ###How to install.
-Use Firefox to open this [URL:]() or just search in the firefox addon store with keyword: 'MJsonViewer'.
+Use Firefox to open this [URL:https://addons.mozilla.org/en-US/firefox/addon/mjsonviewer](https://addons.mozilla.org/en-US/firefox/addon/mjsonviewer/) or just search in the firefox addon store with keyword: 'MJsonViewer'.
+
+###TODO
+See [TODO.md](./TODO.md)
+
+###LICENSE
+See [LICENSE](./LICENSE)
 
 ###Thanks
 Inspired by [json-lite](https://github.com/lauriro/json-lite)
