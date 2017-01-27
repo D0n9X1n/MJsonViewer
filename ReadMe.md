@@ -12,7 +12,8 @@ Yet, just another jsonview plugin for Firefox.
 > ![Appearance](./images/image.jpeg)
 
 ###How to install.
-Use Firefox to open this [URL:https://addons.mozilla.org/en-US/firefox/addon/mjsonviewer](https://addons.mozilla.org/en-US/firefox/addon/mjsonviewer/) or just search in the firefox addon store with keyword: 'MJsonViewer'.
++ Use Firefox to open this [URL:https://addons.mozilla.org/en-US/firefox/addon/mjsonviewer](https://addons.mozilla.org/en-US/firefox/addon/mjsonviewer/)
++ or just search in the firefox addon store with keyword: 'MJsonViewer'.
 
 ###TODO
 See [TODO.md](./TODO.md)
