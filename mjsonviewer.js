@@ -20,7 +20,20 @@
 // OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //////////////////////////////////////////////////////////////////////////////////////
 
-!function() {
+var bgColor, intColor, strColor, keyColor, defaultColor;
+
+function onError(error) {
+    console.log(`Error: ${error}`);
+}
+
+function onGot(result) {
+    console.log((result[0]));
+    bgColor      = result[0].bgColor      || "#FDF6E3";
+    intColor     = result[0].intColor     || "#657A81";
+    strColor     = result[0].strColor     || "#2AA198";
+    keyColor     = result[0].keyColor     || "#B58900";
+    defaultColor = result[0].defaultColor || "#586E75";
+
     var str, jsonpMatch, hovered, tag,
         chrome = this.chrome || this.browser,
         jsonRe = /^\s*(?:\[\s*(?=-?\d|true|false|null|["[{])[^]*\]|\{\s*"[^]+\})\s*$/,
@@ -119,15 +132,15 @@
             'i.C', ':before{content:" ▶ "}' +
             'i.I', ':after{content:attr(data-content)}' +
             'i.C', '+.D', '{width:1px; height:1px; margin:0; padding:0; border:0; display:inline-block; overflow:hidden}' +
-            '.S', '{color:#2AA198}' + // string
-            '.K', '{color:#B58900}' + // key
+            '.S', '{color:' + strColor + '}' + // string
+            '.K', '{color:' + keyColor + '}' + // key
             '.E', '{color:#BCADAD}' + // error
-            '.B', '{color:#657A81}' + // number and bool
+            '.B', '{color:' + intColor + '}' + // number and bool
             '.E', ',.B', '{font-style: italic}' + // number bold
             'h3.E', '{margin:0 0 1em}'
         ].join(rand);
 
-        tag.textContent = tag.textContent + 'body {background: #FDF6E3; color:#586E75;}';
+        tag.textContent = tag.textContent + 'body {background: ' + bgColor + '; color:' + defaultColor + ';}';
 
         div.classList.add(DIV);
         document.head.appendChild(tag);
@@ -284,5 +297,8 @@
             draw(str, node.parentNode, node, "X" + rand)
         }
     })
-}()
+}
+
+var getting = browser.storage.local.get();
+getting.then(onGot, onError);
 

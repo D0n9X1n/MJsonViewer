@@ -15,6 +15,11 @@ Yet, just another jsonview plugin for Firefox.
 + Use Firefox to open this [URL:https://addons.mozilla.org/en-US/firefox/addon/mjsonviewer](https://addons.mozilla.org/en-US/firefox/addon/mjsonviewer/)
 + or just search in the firefox addon store with keyword: 'MJsonViewer'.
 
+
+###How to Config
++ Open your `about:addons` page and find the **MJsonViewer** line.
++ Click the Preference and edit by yourself.
+
 ###TODO
 See [TODO.md](./TODO.md)
 

@@ -6,4 +6,4 @@ None so far.
 
 
 ###Features:
-1. Add customized option.
+1. √ ~~Add customized option.~~
