@@ -27,12 +27,19 @@ function onError(error) {
 }
 
 function onGot(result) {
-    console.log((result[0]));
-    bgColor      = result[0].bgColor      || "#FDF6E3";
-    intColor     = result[0].intColor     || "#657A81";
-    strColor     = result[0].strColor     || "#2AA198";
-    keyColor     = result[0].keyColor     || "#B58900";
-    defaultColor = result[0].defaultColor || "#586E75";
+    if (result[0]) {
+        bgColor      = result[0].bgColor      || "#FDF6E3";
+        intColor     = result[0].intColor     || "#657A81";
+        strColor     = result[0].strColor     || "#2AA198";
+        keyColor     = result[0].keyColor     || "#B58900";
+        defaultColor = result[0].defaultColor || "#586E75";
+    } else {
+        bgColor      = result.bgColor      || "#FDF6E3";
+        intColor     = result.intColor     || "#657A81";
+        strColor     = result.strColor     || "#2AA198";
+        keyColor     = result.keyColor     || "#B58900";
+        defaultColor = result.defaultColor || "#586E75";
+    }
 
     var str, jsonpMatch, hovered, tag,
         chrome = this.chrome || this.browser,
