@@ -22,11 +22,15 @@
 
 function setPreviewColor(result) {
     console.log("load Color");
+    document.getElementById("fontLabel").style.fontFamily        = result.fontStyle    || "Consolas";
+
     document.querySelector("#bgColorLabel").style.backgroundColor = result.bgColor      || "#FDF6E3";
     document.querySelector("#intColorLabel").style.color          = result.intColor     || "#657A81";
     document.querySelector("#strColorLabel").style.color          = result.strColor     || "#2AA198";
     document.querySelector("#keyColorLabel").style.color          = result.keyColor     || "#B58900";
     document.querySelector("#defaultColorLabel").style.color      = result.defaultColor || "#586E75";
+
+    document.querySelector("#strictOnly").checked = result.strictOnly   || false;
 }
 
 function onError(error) {
@@ -40,7 +44,11 @@ function saveOptions(e) {
         intColor:     document.querySelector("#intColor").value,
         strColor:     document.querySelector("#strColor").value,
         keyColor:     document.querySelector("#keyColor").value,
-        defaultColor: document.querySelector("#defaultColor").value
+        defaultColor: document.querySelector("#defaultColor").value,
+        fontStyle:    document.querySelector("#fontStyle").value,
+
+        strictOnly:   document.querySelector("#strictOnly").checked
+
     });
     alert("Success");
     browser.storage.local.get().then(setCurrentChoice, onError);
@@ -53,6 +61,9 @@ function setCurrentChoice(result) {
     document.querySelector("#strColor").value     = result.strColor     || "#2AA198";
     document.querySelector("#keyColor").value     = result.keyColor     || "#B58900";
     document.querySelector("#defaultColor").value = result.defaultColor || "#586E75";
+    document.querySelector("#fontStyle").value    = result.fontStyle    || "Consolas";
+
+    document.querySelector("#strictOnly").checked = result.strictOnly   || false;
 
     setPreviewColor(result);
 }

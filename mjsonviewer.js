@@ -21,24 +21,32 @@
 //////////////////////////////////////////////////////////////////////////////////////
 
 var bgColor, intColor, strColor, keyColor, defaultColor;
+var fontStyle;
+var strictOnly;
 
 function onError(error) {
-    console.log(`Error: ${error}`);
+    console.log(error);
 }
 
 function onGot(result) {
     if (result[0]) {
+        fontStyle    = result[0].fontStyle    || "Consolas";
         bgColor      = result[0].bgColor      || "#FDF6E3";
         intColor     = result[0].intColor     || "#657A81";
         strColor     = result[0].strColor     || "#2AA198";
         keyColor     = result[0].keyColor     || "#B58900";
         defaultColor = result[0].defaultColor || "#586E75";
+
+        strictOnly   = result[0].strictOnly   || false;
     } else {
+        fontStyle    = result.fontStyle    || "Consolas";
         bgColor      = result.bgColor      || "#FDF6E3";
         intColor     = result.intColor     || "#657A81";
         strColor     = result.strColor     || "#2AA198";
         keyColor     = result.keyColor     || "#B58900";
         defaultColor = result.defaultColor || "#586E75";
+
+        strictOnly   = result.strictOnly   || false;
     }
 
     var str, jsonpMatch, hovered, tag,
@@ -128,7 +136,7 @@ function onGot(result) {
     function init() {
         tag = document.createElement("style");
         tag.textContent = [
-            '.R', ',.D', '{font:16px consolas, Menlo, monospace}' +
+            '.R', ',.D', '{font:16px ' + fontStyle + '}' +
             '.D', '{margin-left:6px; padding-left:1em; margin-top: 1px; border-left:1px dashed; border-color: #93A1A1;}' +
             '.X', '{border:1px solid #ccc; padding:1em}' +
             'a.L', '{text-decoration:none}' +
@@ -269,23 +277,30 @@ function onGot(result) {
         }
     }
 
-    // check whether the content is json or like json
-    if (first
-        && (first.tagName == "PRE"
-            && first == body.lastElementChild
-            || first == body.lastChild
-            && first.nodeType == 3)
-        && (str = first.textContent)
-        && (/[+\/]json$/i.test(document.contentType)
-            || (jsonpMatch = /^\s*((?:\/\*\*\/\s*)?([$a-z_][$\w]*)\s*(?:&&\s*\2\s*)?\()([^]+)(\)[\s;]*)$/i.exec(str))
-            && jsonRe.test(jsonpMatch[3]) || jsonRe.test(str)))
-    {
-        if (jsonpMatch) {
-            str = jsonpMatch[3]
-            body.replaceChild(fragment(jsonpMatch[1], jsonpMatch[4]), first)
-            first = body.lastChild.previousSibling
+    if (strictOnly) {
+        // only render when the contentType is json
+        if (/[+\/]json$/i.test(document.contentType))
+            draw(str, body, first)
         }
-        draw(str, body, first)
+    } else {
+        // check whether the content is json or like json
+        if (first
+            && (first.tagName == "PRE"
+                && first == body.lastElementChild
+                || first == body.lastChild
+                && first.nodeType == 3)
+            && (str = first.textContent)
+            && (/[+\/]json$/i.test(document.contentType)
+                || (jsonpMatch = /^\s*((?:\/\*\*\/\s*)?([$a-z_][$\w]*)\s*(?:&&\s*\2\s*)?\()([^]+)(\)[\s;]*)$/i.exec(str))
+                && jsonRe.test(jsonpMatch[3]) || jsonRe.test(str)))
+        {
+            if (jsonpMatch) {
+                str = jsonpMatch[3]
+                body.replaceChild(fragment(jsonpMatch[1], jsonpMatch[4]), first)
+                first = body.lastChild.previousSibling
+            }
+            draw(str, body, first)
+        }
     }
 
     chrome.runtime.onMessage.addListener(function(req, sender, sendResponse) {
