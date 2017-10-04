@@ -279,7 +279,7 @@ function onGot(result) {
 
     if (strictOnly) {
         // only render when the contentType is json
-        if (/[+\/]json$/i.test(document.contentType))
+        if (/[+\/]json$/i.test(document.contentType)) {
             draw(str, body, first)
         }
     } else {
