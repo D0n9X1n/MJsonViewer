@@ -22,15 +22,14 @@
 
 function setPreviewColor(result) {
     console.log("load Color");
-    document.getElementById("fontLabel").style.fontFamily        = result.fontStyle    || "Consolas";
-
+    document.getElementById("fontLabel").style.fontFamily         = result.fontStyle    || "Consolas";
     document.querySelector("#bgColorLabel").style.backgroundColor = result.bgColor      || "#FDF6E3";
     document.querySelector("#intColorLabel").style.color          = result.intColor     || "#657A81";
     document.querySelector("#strColorLabel").style.color          = result.strColor     || "#2AA198";
     document.querySelector("#keyColorLabel").style.color          = result.keyColor     || "#B58900";
     document.querySelector("#defaultColorLabel").style.color      = result.defaultColor || "#586E75";
 
-    document.querySelector("#strictOnly").checked = result.strictOnly   || false;
+    document.querySelector("#strictOnly").checked                 = result.strictOnly   || false;
 }
 
 function onError(error) {

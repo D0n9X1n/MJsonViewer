@@ -2,7 +2,7 @@
     "manifest_version": 2,
     "name": "MJsonViewer",
     "version": "1.2",
-    "author" : "Mike",
+    "author": "Mike",
     "description": "Yet, just another jsonviewer plugin for Firefox.",
     "icons": {
         "48": "icons/icon48.png",
@@ -16,10 +16,12 @@
         "storage",
         "contextMenus",
         "tabs",
-        "<all_urls>"
+        "<all_urls>",
+        "webRequest",
+        "webRequestBlocking",
+        "webNavigation"
     ],
-    "content_scripts": [
-        {
+    "content_scripts": [{
             "all_frames": true,
             "matches": [
                 "<all_urls>"
@@ -29,5 +31,8 @@
             ],
             "run_at": "document_end"
         }
-    ]
+    ],
+    "background": {
+        "scripts": ["background.js"]
+    }
 }

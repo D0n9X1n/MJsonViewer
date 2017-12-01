@@ -20,6 +20,10 @@
 // OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //////////////////////////////////////////////////////////////////////////////////////
 
+// ===========================================
+// JSON PARSER
+// ===========================================
+
 var bgColor, intColor, strColor, keyColor, defaultColor;
 var fontStyle;
 var strictOnly;
@@ -39,38 +43,38 @@ function onGot(result) {
 
         strictOnly   = result[0].strictOnly   || false;
     } else {
-        fontStyle    = result.fontStyle    || "Consolas";
-        bgColor      = result.bgColor      || "#FDF6E3";
-        intColor     = result.intColor     || "#657A81";
-        strColor     = result.strColor     || "#2AA198";
-        keyColor     = result.keyColor     || "#B58900";
-        defaultColor = result.defaultColor || "#586E75";
+        fontStyle    = result.fontStyle       || "Consolas";
+        bgColor      = result.bgColor         || "#FDF6E3";
+        intColor     = result.intColor        || "#657A81";
+        strColor     = result.strColor        || "#2AA198";
+        keyColor     = result.keyColor        || "#B58900";
+        defaultColor = result.defaultColor    || "#586E75";
 
-        strictOnly   = result.strictOnly   || false;
+        strictOnly   = result.strictOnly      || false;
     }
 
     var str, jsonpMatch, hovered, tag,
         chrome = this.chrome || this.browser,
         jsonRe = /^\s*(?:\[\s*(?=-?\d|true|false|null|["[{])[^]*\]|\{\s*"[^]+\})\s*$/,
-        div    = document.createElement("div"),
-        body   = document.body,
-        first  = body && body.firstChild,
-        mod    = /Mac|iPod|iPhone|iPad|Pike/.test(navigator.platform) ? "metaKey" : "ctrlKey",
-        rand   = Math.random().toString(36).slice(2),
-        HOV    = "H" + rand,
-        DIV    = "D" + rand,
-        KEY    = "K" + rand,
-        STR    = "S" + rand,
-        BOOL   = "B" + rand,
-        ERR    = "E" + rand,
-        COLL   = "C" + rand;
+        div = document.createElement("div"),
+        body = document.body,
+        first = body && body.firstChild,
+        mod = /Mac|iPod|iPhone|iPad|Pike/.test(navigator.platform) ? "metaKey" : "ctrlKey",
+        rand = Math.random().toString(36).slice(2),
+        HOV = "H" + rand,
+        DIV = "D" + rand,
+        KEY = "K" + rand,
+        STR = "S" + rand,
+        BOOL = "B" + rand,
+        ERR = "E" + rand,
+        COLL = "C" + rand;
 
-    function reconvert(str){
+    function reconvert(str) {
         str = str.replace(/(\\u)(\w{1,4})/gi, function($0) {
             return (String.fromCharCode(parseInt((escape($0).replace(/(%5Cu)(\w{1,4})/g, "$2")), 16)));
         });
         str = str.replace(/(&#x)(\w{1,4});/gi, function($0) {
-            return String.fromCharCode(parseInt(escape($0).replace(/(%26%23x)(\w{1,4})(%3B)/g, "$2"),16));
+            return String.fromCharCode(parseInt(escape($0).replace(/(%26%23x)(\w{1,4})(%3B)/g, "$2"), 16));
         });
         str = str.replace(/(&#)(\d{1,6});/gi, function($0) {
             return String.fromCharCode(parseInt(escape($0).replace(/(%26%23)(\d{1,6})(%3B)/g, "$2")));
@@ -80,8 +84,8 @@ function onGot(result) {
     }
 
     function units(size) {
-        return size > 1048576 ? (0|(size / 1048576)) + "MB" :
-            size > 1024 ? (0|(size / 1024)) + "KB" :
+        return size > 1048576 ? (0 | (size / 1048576)) + "MB" :
+            size > 1024 ? (0 | (size / 1024)) + "KB" :
             size + "B";
     }
 
@@ -98,21 +102,24 @@ function onGot(result) {
     }
 
     function change(node, query, name, set) {
-        var list = node.querySelectorAll(query), i = list.length;
-        for (; i--; ) list[i].classList[set ? "add" : "remove"](name);
+        var list = node.querySelectorAll(query),
+            i = list.length;
+        for (; i--;) list[i].classList[set ? "add" : "remove"](name);
     }
 
     function changeSiblings(node, name, set) {
-        var tmp, i = 0, query = [];
+        var tmp, i = 0,
+            query = [];
 
-        for (; node && node.tagName === "I"; ) {
+        for (; node && node.tagName === "I";) {
             tmp = node.previousElementSibling;
             if (tmp && tmp.className == KEY) {
                 query.unshift(".D" + rand + ">i.I" + rand + "[data-key='" + node.dataset.key + "']");
             } else if (query[0]) {
                 query.unshift(".D" + rand + ">i.I" + rand);
             } else {
-                for (; tmp; tmp = tmp.previousElementSibling) if (tmp.tagName === "BR") i++;
+                for (; tmp; tmp = tmp.previousElementSibling)
+                    if (tmp.tagName === "BR") i++;
                 query.unshift(".D" + rand + ">" + (i ? "br:nth-of-type(" + i + ")+i.I" + rand : "i.I" + rand + ":first-child"));
             }
             node = node.parentNode && node.parentNode.previousElementSibling;
@@ -142,7 +149,7 @@ function onGot(result) {
             'a.L', '{text-decoration:none}' +
             'a.L', ':hover,a.L', ':focus{text-decoration:underline}' +
             'i.I', '{cursor:pointer;color:#ccc}' +
-            'i.H', ',i.I', ':hover{text-shadow: 1px 1px 3px #999; color:#333}'+
+            'i.H', ',i.I', ':hover{text-shadow: 1px 1px 3px #999; color:#333}' +
             'i.I', ':before{content:" ▼ "}' +
             'i.C', ':before{content:" ▶ "}' +
             'i.I', ':after{content:attr(data-content)}' +
@@ -180,15 +187,15 @@ function onGot(result) {
     function draw(str, to, first, box) {
         tag || init();
 
-        var re = /("(?:((?:https?|file):\/\/(?:\\?\S)+?)|(?:\\?.)*?)")\s*(:?)|-?\d+\.?\d*(?:e[+-]?\d+)?|true|false|null|[[\]{},]|(\S[^-[\]{},"\d]*)/gi
-            , node = div.cloneNode()
-            , link = document.createElement("a")
-            , span = document.createElement("span")
-            , info = document.createElement("i")
-            , colon = document.createTextNode(": ")
-            , comma = fragment(",")
-            , path = []
-            , cache = {
+        var re = /("(?:((?:https?|file):\/\/(?:\\?\S)+?)|(?:\\?.)*?)")\s*(:?)|-?\d+\.?\d*(?:e[+-]?\d+)?|true|false|null|[[\]{},]|(\S[^-[\]{},"\d]*)/gi,
+            node = div.cloneNode(),
+            link = document.createElement("a"),
+            span = document.createElement("span"),
+            info = document.createElement("i"),
+            colon = document.createTextNode(": "),
+            comma = fragment(","),
+            path = [],
+            cache = {
                 "{": fragment("{", "}"),
                 "[": fragment("[", "]")
             };
@@ -199,7 +206,8 @@ function onGot(result) {
         info.classList.add("I" + rand);
 
         to.addEventListener("click", function(e) {
-            var target = e.target, open = target.classList.contains(COLL);
+            var target = e.target,
+                open = target.classList.contains(COLL);
             if (target.tagName == "I") {
                 if (e.altKey) {
                     changeSiblings(target, COLL, !open);
@@ -217,9 +225,10 @@ function onGot(result) {
 
         function loop(str, re) {
             str = reconvert(str);
-            var match, val, tmp, i = 0, len = str.length;
+            var match, val, tmp, i = 0,
+                len = str.length;
             try {
-                for (; match = re.exec(str); ) {
+                for (; match = re.exec(str);) {
                     val = match[0];
                     if (val == "{" || val == "[") {
                         path.push(node);
@@ -262,13 +271,15 @@ function onGot(result) {
                         }
                     }
                     if (++i > 1000) {
-                        document.title = (0|(100*re.lastIndex/len)) + "% of " + units(len);
-                        return setTimeout(function() { loop(str, re) });
+                        document.title = (0 | (100 * re.lastIndex / len)) + "% of " + units(len);
+                        return setTimeout(function() {
+                            loop(str, re)
+                        });
                     }
                 }
                 document.title = ""
                 JSON.parse(str)
-            } catch(e) {
+            } catch (e) {
                 tmp = document.createElement("h3");
                 tmp.className = ERR;
                 tmp.textContent = e;
@@ -284,16 +295,15 @@ function onGot(result) {
         }
     } else {
         // check whether the content is json or like json
-        if (first
-            && (first.tagName == "PRE"
-                && first == body.lastElementChild
-                || first == body.lastChild
-                && first.nodeType == 3)
-            && (str = first.textContent)
-            && (/[+\/]json$/i.test(document.contentType)
-                || (jsonpMatch = /^\s*((?:\/\*\*\/\s*)?([$a-z_][$\w]*)\s*(?:&&\s*\2\s*)?\()([^]+)(\)[\s;]*)$/i.exec(str))
-                && jsonRe.test(jsonpMatch[3]) || jsonRe.test(str)))
-        {
+        if (first &&
+            (first.tagName == "PRE" &&
+                first == body.lastElementChild ||
+                first == body.lastChild &&
+                first.nodeType == 3) &&
+            (str = first.textContent) &&
+            (/[+\/]json$/i.test(document.contentType) ||
+                (jsonpMatch = /^\s*((?:\/\*\*\/\s*)?([$a-z_][$\w]*)\s*(?:&&\s*\2\s*)?\()([^]+)(\)[\s;]*)$/i.exec(str)) &&
+                jsonRe.test(jsonpMatch[3]) || jsonRe.test(str))) {
             if (jsonpMatch) {
                 str = jsonpMatch[3]
                 body.replaceChild(fragment(jsonpMatch[1], jsonpMatch[4]), first)
@@ -305,9 +315,9 @@ function onGot(result) {
 
     chrome.runtime.onMessage.addListener(function(req, sender, sendResponse) {
         var node,
-            sel   = window.getSelection(),
+            sel = window.getSelection(),
             range = sel.rangeCount && sel.getRangeAt(0),
-            str   = range && range.toString()
+            str = range && range.toString()
 
         if (!str) return
 
@@ -323,4 +333,3 @@ function onGot(result) {
 
 var getting = browser.storage.local.get();
 getting.then(onGot, onError);
-
