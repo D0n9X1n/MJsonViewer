@@ -1,6 +1,6 @@
 MJsonViewer
 ---
-[![GitHub release](https://img.shields.io/badge/release-v1.2-green.svg)](https://github.com/MikeCoder/MJsonViewer)
+[![GitHub release](https://img.shields.io/badge/release-v2.0-green.svg)](https://github.com/MikeCoder/MJsonViewer)
 
 Yet, just another jsonview plugin for Firefox.
 
@@ -9,7 +9,10 @@ Yet, just another jsonview plugin for Firefox.
 2. I find its default jsonviewer is ugly and not directly.
 
 ## How it looks like.
+### Its common look.
 > ![Appearance](./images/image.jpeg)
+### If a value-string is a json, when you click the parser will show its structure.
+> ![JSON Preview](./images/jsonpreview.png)
 
 ## How to install.
 + Use Firefox to open this [URL:https://addons.mozilla.org/en-US/firefox/addon/mjsonviewer](https://addons.mozilla.org/en-US/firefox/addon/mjsonviewer/)
