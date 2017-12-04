@@ -30,6 +30,7 @@ function setPreviewColor(result) {
     document.querySelector("#defaultColorLabel").style.color      = result.defaultColor || "#586E75";
 
     document.querySelector("#strictOnly").checked                 = result.strictOnly   || false;
+    document.querySelector("#hideDetails").checked                = result.hideDetails  || false;
 }
 
 function onError(error) {
@@ -46,7 +47,8 @@ function saveOptions(e) {
         defaultColor: document.querySelector("#defaultColor").value,
         fontStyle:    document.querySelector("#fontStyle").value,
 
-        strictOnly:   document.querySelector("#strictOnly").checked
+        strictOnly:   document.querySelector("#strictOnly").checked,
+        hideDetails:  document.querySelector("#hideDetails").checked
 
     });
     alert("Success");
@@ -55,14 +57,15 @@ function saveOptions(e) {
 
 function setCurrentChoice(result) {
     console.log(result);
-    document.querySelector("#bgColor").value      = result.bgColor      || "#FDF6E3";
-    document.querySelector("#intColor").value     = result.intColor     || "#657A81";
-    document.querySelector("#strColor").value     = result.strColor     || "#2AA198";
-    document.querySelector("#keyColor").value     = result.keyColor     || "#B58900";
-    document.querySelector("#defaultColor").value = result.defaultColor || "#586E75";
-    document.querySelector("#fontStyle").value    = result.fontStyle    || "Consolas";
+    document.querySelector("#bgColor").value       = result.bgColor      || "#FDF6E3";
+    document.querySelector("#intColor").value      = result.intColor     || "#657A81";
+    document.querySelector("#strColor").value      = result.strColor     || "#2AA198";
+    document.querySelector("#keyColor").value      = result.keyColor     || "#B58900";
+    document.querySelector("#defaultColor").value  = result.defaultColor || "#586E75";
+    document.querySelector("#fontStyle").value     = result.fontStyle    || "Consolas";
 
-    document.querySelector("#strictOnly").checked = result.strictOnly   || false;
+    document.querySelector("#strictOnly").checked  = result.strictOnly   || false;
+    document.querySelector("#hideDetails").checked = result.hideDetails  || false;
 
     setPreviewColor(result);
 }

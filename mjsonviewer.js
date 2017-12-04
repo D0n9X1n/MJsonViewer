@@ -26,7 +26,7 @@
 
 var bgColor, intColor, strColor, keyColor, defaultColor;
 var fontStyle;
-var strictOnly;
+var strictOnly, hideDetails;
 
 function onError(error) {
     console.log(error);
@@ -42,6 +42,7 @@ function onGot(result) {
         defaultColor = result[0].defaultColor || "#586E75";
 
         strictOnly   = result[0].strictOnly   || false;
+        hideDetails  = result[0].hideDetails  || false;
     } else {
         fontStyle    = result.fontStyle       || "Consolas";
         bgColor      = result.bgColor         || "#FDF6E3";
@@ -51,6 +52,7 @@ function onGot(result) {
         defaultColor = result.defaultColor    || "#586E75";
 
         strictOnly   = result.strictOnly      || false;
+        hideDetails  = result.hideDetails  || false;
     }
 
     var str, jsonpMatch, hovered, tag,
@@ -239,11 +241,13 @@ function onGot(result) {
                     } else if ((val == "}" || val == "]") && node.len) {
                         if (node.childNodes.length) {
                             tmp = info.cloneNode();
-                            tmp.dataset.content = node.len + (
-                                node.len == 1 ?
-                                (val == "]" ? " item, " : " property, ") :
-                                (val == "]" ? " items, " : " properties, ")
-                            ) + units(re.lastIndex - node.start + 1);
+                            if (!hideDetails) {
+                                tmp.dataset.content = node.len + (
+                                    node.len == 1 ?
+                                    (val == "]" ? " item, " : " property, ") :
+                                    (val == "]" ? " items, " : " properties, ")
+                                ) + units(re.lastIndex - node.start + 1);
+                            }
 
                             if ((val = node.previousElementSibling) && val.className == KEY) {
                                 tmp.dataset.key = reconvert(val.textContent.slice(1, -1).replace(/'/, "\\'"));
