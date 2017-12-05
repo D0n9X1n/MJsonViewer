@@ -247,7 +247,8 @@ function onGot(result) {
                                     node.len == 1 ?
                                     (val == "]" ? " item, " : " property, ") :
                                     (val == "]" ? " items, " : " properties, ")
-                                ) + units(re.lastIndex - node.start + 1); }
+                                ) + units(re.lastIndex - node.start + 1);
+                            }
 
                             if ((val = node.previousElementSibling) && val.className == KEY) {
                                 tmp.dataset.key = reconvert(val.textContent.slice(1, -1).replace(/'/, "\\'"));
