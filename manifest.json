@@ -18,8 +18,7 @@
         "tabs",
         "<all_urls>",
         "webRequest",
-        "webRequestBlocking",
-        "webNavigation"
+        "webRequestBlocking"
     ],
     "content_scripts": [{
             "all_frames": true,

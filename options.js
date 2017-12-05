@@ -49,7 +49,6 @@ function saveOptions(e) {
 
         strictOnly:   document.querySelector("#strictOnly").checked,
         hideDetails:  document.querySelector("#hideDetails").checked
-
     });
     alert("Success");
     browser.storage.local.get().then(setCurrentChoice, onError);

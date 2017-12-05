@@ -33,7 +33,7 @@ const findJsonMimeType = function(header) {
     return header.name.toLowerCase() === 'content-type' && header.value.includes('json');
 };
 
-const overrideJsonHeader = function(request) {
+const addJsonHandler = function(request) {
     return new Promise((resolve) => {
         if (request.responseHeaders.find(findJsonMimeType)) {
             const jsonHeader = {
@@ -50,7 +50,7 @@ const overrideJsonHeader = function(request) {
 };
 
 browser.webRequest.onHeadersReceived.addListener(
-    overrideJsonHeader, {
+    addJsonHandler, {
         urls: ['<all_urls>']
     }, [
         'blocking',
