@@ -415,7 +415,6 @@ function onParse() {
             var json = (eval(items[i].innerHTML));
             if (isJSON(json)) {
                 var formated = formatJson(json);
-                console.log(formated);
                 items[i].onclick = function() {
                     alert(formated);
                 }
