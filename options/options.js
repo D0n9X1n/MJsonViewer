@@ -32,6 +32,7 @@ function setPreviewColor(result) {
 
     document.querySelector("#strictOnly").checked                 = result.strictOnly   || false;
     document.querySelector("#hideDetails").checked                = result.hideDetails  || false;
+    document.querySelector("#dontBeatify").checked                = result.dontBeatify  || false;
 }
 
 function onError(error) {
@@ -50,7 +51,8 @@ function saveOptions(e) {
         fontSize:     document.querySelector("#fontSize").value,
 
         strictOnly:   document.querySelector("#strictOnly").checked,
-        hideDetails:  document.querySelector("#hideDetails").checked
+        hideDetails:  document.querySelector("#hideDetails").checked,
+        dontBeatify:  document.querySelector("#dontBeatify").checked
     });
     console.log(document.querySelector("#fontSize").value);
     alert("Success");
@@ -69,6 +71,7 @@ function setCurrentChoice(result) {
 
     document.querySelector("#strictOnly").checked  = result.strictOnly   || false;
     document.querySelector("#hideDetails").checked = result.hideDetails  || false;
+    document.querySelector("#dontBeatify").checked = result.dontBeatify  || false;
 
     setPreviewColor(result);
 }

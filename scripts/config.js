@@ -35,6 +35,7 @@ function onConfig(result) {
 
         strictOnly   = false;
         hideDetails  = false;
+        dontBeatify  = false;
         return;
     }
     if (result && result[0]) {
@@ -48,6 +49,7 @@ function onConfig(result) {
 
         strictOnly   = result[0].strictOnly   || false;
         hideDetails  = result[0].hideDetails  || false;
+        dontBeatify  = result[0].dontBeatify  || false;
     } else {
         fontStyle    = result.fontStyle       || "Consolas";
         fontSize     = result.fontSize        || "14px";
@@ -59,6 +61,7 @@ function onConfig(result) {
 
         strictOnly   = result.strictOnly      || false;
         hideDetails  = result.hideDetails     || false;
+        dontBeatify  = result.dontBeatify     || false;
     }
 
     document.addEventListener("click", function(e) {

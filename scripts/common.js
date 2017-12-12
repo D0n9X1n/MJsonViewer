@@ -27,6 +27,7 @@ var fontStyle; // font-family
 var fontSize; // font-size
 var strictOnly; // only deal with the application/json response
 var hideDetails; // hide the count and size
+var dontBeatify; // hide the [str] or [json]
 
 // ===========================================
 // DEFAULT VALUES
@@ -47,6 +48,7 @@ var COLL = "C" + RAND;
 // defaultColor = "#586E75";
 // strictOnly   = false;
 // hideDetails  = false;
+// dontBeatify  = false;
 
 // ===========================================
 // COMMON FUNCTIONS
