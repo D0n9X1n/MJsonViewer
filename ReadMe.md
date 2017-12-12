@@ -11,9 +11,9 @@ Yet, just another jsonview plugin for Firefox.
 
 ## How it looks like.
 ### Its common look.
-> ![Appearance](./images/image.jpeg)
+> ![Appearance](./images/pre.png)
 ### If a value-string is a json, when you click the parser will show its structure.
-> ![JSON Preview](./images/jsonpreview.png)
+> ![JSON Preview](./images/jsonpre.png)
 
 ## How to install.
 + Use Firefox to open this [URL:https://addons.mozilla.org/en-US/firefox/addon/mjsonviewer](https://addons.mozilla.org/en-US/firefox/addon/mjsonviewer/)
@@ -22,6 +22,7 @@ Yet, just another jsonview plugin for Firefox.
 ## How to Config
 + Open your `about:addons` page and find the **MJsonViewer** line.
 + Click the Preference and edit by yourself.
+> ![config](./images/config.png)
 
 ## TODO
 See [TODO.md](./TODO.md)
@@ -30,5 +31,5 @@ See [TODO.md](./TODO.md)
 See [LICENSE](./LICENSE)
 
 ## Thanks
-Inspired by [json-lite](https://github.com/lauriro/json-lite)
-Inspired by [jsonovich](https://github.com/JSONovich/jsonovich)
++ Inspired by [json-lite](https://github.com/lauriro/json-lite)
++ Inspired by [jsonovich](https://github.com/JSONovich/jsonovich)
