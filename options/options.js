@@ -22,7 +22,8 @@
 
 function setPreviewColor(result) {
     console.log("load Color");
-    document.getElementById("fontLabel").style.fontFamily         = result.fontStyle    || "Consolas";
+    document.querySelector("#fontStyleLabel").style.fontFamily    = result.fontStyle    || "Consolas";
+    document.querySelector("#fontSizeLabel").style.fontSize       = result.fontSize     || "14px";
     document.querySelector("#bgColorLabel").style.backgroundColor = result.bgColor      || "#FDF6E3";
     document.querySelector("#intColorLabel").style.color          = result.intColor     || "#657A81";
     document.querySelector("#strColorLabel").style.color          = result.strColor     || "#2AA198";
@@ -46,22 +47,25 @@ function saveOptions(e) {
         keyColor:     document.querySelector("#keyColor").value,
         defaultColor: document.querySelector("#defaultColor").value,
         fontStyle:    document.querySelector("#fontStyle").value,
+        fontSize:     document.querySelector("#fontSize").value,
 
         strictOnly:   document.querySelector("#strictOnly").checked,
         hideDetails:  document.querySelector("#hideDetails").checked
     });
+    console.log(document.querySelector("#fontSize").value);
     alert("Success");
     browser.storage.local.get().then(setCurrentChoice, onError);
 }
 
 function setCurrentChoice(result) {
     console.log(result);
-    document.querySelector("#bgColor").value       = result.bgColor      || "#FDF6E3";
-    document.querySelector("#intColor").value      = result.intColor     || "#657A81";
-    document.querySelector("#strColor").value      = result.strColor     || "#2AA198";
-    document.querySelector("#keyColor").value      = result.keyColor     || "#B58900";
-    document.querySelector("#defaultColor").value  = result.defaultColor || "#586E75";
-    document.querySelector("#fontStyle").value     = result.fontStyle    || "Consolas";
+    document.querySelector("#bgColor").value      = result.bgColor      || "#FDF6E3";
+    document.querySelector("#intColor").value     = result.intColor     || "#657A81";
+    document.querySelector("#strColor").value     = result.strColor     || "#2AA198";
+    document.querySelector("#keyColor").value     = result.keyColor     || "#B58900";
+    document.querySelector("#defaultColor").value = result.defaultColor || "#586E75";
+    document.querySelector("#fontStyle").value    = result.fontStyle    || "Consolas";
+    document.querySelector("#fontSize").value     = result.fontSize     || "14px";
 
     document.querySelector("#strictOnly").checked  = result.strictOnly   || false;
     document.querySelector("#hideDetails").checked = result.hideDetails  || false;

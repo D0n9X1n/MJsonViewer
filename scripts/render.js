@@ -64,7 +64,7 @@ function onParse(result) {
 
         tag = document.createElement("style");
         tag.textContent = [
-            '.R', ',.D', '{font:16px ' + fontStyle + '}' +
+            '.R', ',.D', '{font:' + fontSize + ' ' + fontStyle + '}' +
             '.D', '{margin-left:6px; padding-left:1em; margin-top: 1px; border-left:1px dashed; border-color: #93A1A1;}' +
             '.X', '{border:1px solid #ccc; padding:1em}' +
             'a.L', '{text-decoration:none}' +
@@ -84,23 +84,12 @@ function onParse(result) {
         ].join(RAND);
 
         tag.textContent = tag.textContent + 'body {background: ' + bgColor + '; color:' + defaultColor + ';}';
-        document.head.appendChild(tag);
+        tag.textContent = tag.textContent + '.HIDE {width:200px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }';
+        tag.textContent = tag.textContent + '* {font:' + fontSize + ' ' + fontStyle + ' !important;}';
+        tag.textContent = tag.textContent + '.black_overlay{ display: none; position: absolute; top: 0%; left: 0%; width: 100%; height: 100%; background-color: black; z-index:1001; -moz-opacity: 0.6; opacity:.60; filter: alpha(opacity=60); }';
+        tag.textContent = tag.textContent + '.white_content { display: none; position: absolute; top: 25%; left: 25%; width: 50%; height: 50%; padding: 16px; border: 16px solid orange; background-color: white; z-index:1002; overflow: auto; }';
 
-        document.addEventListener("click", function(e) {
-            var target = e.target;
-            console.log(e.target);
-            if (target.tagName.toUpperCase() == "I") {
-                var isClose = target.classList.contains(COLL);
-                console.log(isClose);
-                if (isClose) {
-                    target.removeAttribute("class");
-                    target.setAttribute("class", "I" + RAND);
-                } else {
-                    target.removeAttribute("class");
-                    target.setAttribute("class", "I" + RAND + " C" + RAND);
-                }
-                e.preventDefault();
-            }
-        }, true);
+        document.head.appendChild(tag);
     }
 }
+

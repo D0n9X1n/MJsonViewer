@@ -10,7 +10,8 @@
         "32": "icons/icon32.png"
     },
     "options_ui": {
-        "page": "options/options.html"
+        "page": "options/options.html",
+        "browser_style": true
     },
     "permissions": [
         "storage",

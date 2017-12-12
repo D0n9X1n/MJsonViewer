@@ -26,6 +26,7 @@ function onConfig(result) {
     if (!result) {
         console.log("No Config find");
         fontStyle    = "Consolas";
+        fontSize     = "14px";
         bgColor      = "#FDF6E3";
         intColor     = "#657A81";
         strColor     = "#2AA198";
@@ -38,6 +39,7 @@ function onConfig(result) {
     }
     if (result && result[0]) {
         fontStyle    = result[0].fontStyle    || "Consolas";
+        fontSize     = result[0].fontSize     || "14px";
         bgColor      = result[0].bgColor      || "#FDF6E3";
         intColor     = result[0].intColor     || "#657A81";
         strColor     = result[0].strColor     || "#2AA198";
@@ -48,6 +50,7 @@ function onConfig(result) {
         hideDetails  = result[0].hideDetails  || false;
     } else {
         fontStyle    = result.fontStyle       || "Consolas";
+        fontSize     = result.fontSize        || "14px";
         bgColor      = result.bgColor         || "#FDF6E3";
         intColor     = result.intColor        || "#657A81";
         strColor     = result.strColor        || "#2AA198";
@@ -57,5 +60,59 @@ function onConfig(result) {
         strictOnly   = result.strictOnly      || false;
         hideDetails  = result.hideDetails     || false;
     }
+
+    document.addEventListener("click", function(e) {
+        console.log(e);
+        var target = e.target;
+        if (target.tagName.toUpperCase() == "I") {
+            var isClose = target.classList.contains(COLL);
+            console.log(isClose);
+            var classname = target.classList[0];
+            console.log(classname);
+            if (isClose) {
+                target.removeAttribute("class");
+                target.setAttribute("class", classname);
+            } else {
+                target.removeAttribute("class");
+                target.setAttribute("class", classname + " C" + classname.substring(1));
+            }
+            e.preventDefault();
+        } else if (target.tagName.toUpperCase() == "STR") {
+            var parentElement = target.parentElement;
+            var originStr = parentElement.innerHTML;
+            parentElement.innerHTML = parentElement.getAttribute("content");
+            parentElement.setAttribute("content", originStr);
+        } else if (target.tagName.toUpperCase() == "JSON") {
+            if (document.getElementById("light")) {
+                var lightDiv = document.getElementById("light");
+                lightDiv.parentElement.removeChild(lightDiv);
+            }
+            if (document.getElementById("fade")) {
+                var fadeDiv = document.getElementById("fade");
+                fadeDiv.parentElement.removeChild(fadeDiv);
+            }
+
+            var parentElement = target.parentElement;
+
+            var fadeDiv = document.createElement("div");
+            fadeDiv.setAttribute("id", "fade");
+            fadeDiv.classList.add("black_overlay");
+            document.body.appendChild(fadeDiv);
+
+            var lightDiv = document.createElement("div");
+            lightDiv.setAttribute("id", "light");
+            lightDiv.classList.add("white_content");
+            document.body.appendChild(lightDiv);
+
+            document.getElementById('light').style.display = 'block';
+            document.getElementById('fade').style.display = 'block';
+            draw(eval(parentElement.getAttribute("json")), lightDiv);
+        } else if (target.classList.contains("black_overlay")) {
+            var fadeDiv = document.getElementById("fade");
+            fadeDiv.parentElement.removeChild(fadeDiv);
+            var lightDiv = document.getElementById("light");
+            lightDiv.parentElement.removeChild(lightDiv);
+        }
+    }, true);
 }
 

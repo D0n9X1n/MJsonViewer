@@ -21,19 +21,22 @@
 // ===========================================
 // JSON RENOVATER
 // ===========================================
+
+
 function onRenovate(result) {
-    var items = document.getElementsByClassName('S' + RAND);
-    for (var i = 0; i < items.length; i++) {
-        try {
-            var json = (eval(items[i].innerHTML));
-            console.log(json);
-            if (isJSON(json)) {
-                draw(json, items[i]);
-                // var formated = formatJson(json);
-                // items[i].onclick = function() {
-                    // alert(formated);
-                // }
+    try {
+        var items = document.getElementsByClassName('S' + RAND);
+        for (var i = 0; i < items.length; i++) {
+            if (isJSON(items[i].innerHTML)) {
+                items[i].setAttribute("content", '<str style="color:#888;"> [→ str ←]  </str><json style="color:#888;"> [← json →]  </json>' + items[i].innerHTML);
+                items[i].setAttribute("json", items[i].innerHTML);
+                items[i].innerHTML = '<str style="color:#888;"> [← str →]  </str><json style="color:#888;"> [← json →]  </json>' + items[i].innerHTML.substring(0, 10) + ' ··· ' + items[i].innerHTML.substr(-10, 10);
+            } else if (items[i].innerHTML.length > 300) {
+                items[i].setAttribute("content", '<str style="color:#888;"> [→ str ←]  </str>' + items[i].innerHTML);
+                items[i].innerHTML = '<str style="color:#888;"> [← str →]  </str>' + items[i].innerHTML.substring(0, 10) + ' ··· ' + items[i].innerHTML.substr(-10, 10);
             }
-        } catch (e) {}
+        }
+    } catch (e) {
+        console.log(e);
     }
 }

@@ -6,7 +6,6 @@
 // the rights to use, copy, modify, merge, publish, distribute, sublicense,
 // and/or sell copies of the Software, and to permit persons to whom the
 // Software is furnished to do so, subject to the following conditions:
-
 // The above copyright notice and this permission notice shall be included
 // in all copies or substantial portions of the Software.
 
@@ -25,6 +24,7 @@ var strColor; // string color
 var keyColor; // k-v key color
 var defaultColor; // default text color
 var fontStyle; // font-family
+var fontSize; // font-size
 var strictOnly; // only deal with the application/json response
 var hideDetails; // hide the count and size
 
@@ -32,12 +32,12 @@ var hideDetails; // hide the count and size
 // DEFAULT VALUES
 // ===========================================
 var RAND = "MIKE";
-var HOV = "H" + RAND;
-var DIV = "D" + RAND;
-var KEY = "K" + RAND;
-var STR = "S" + RAND;
+var HOV  = "H" + RAND;
+var DIV  = "D" + RAND;
+var KEY  = "K" + RAND;
+var STR  = "S" + RAND;
 var BOOL = "B" + RAND;
-var ERR = "E" + RAND;
+var ERR  = "E" + RAND;
 var COLL = "C" + RAND;
 // fontStyle    = "Consolas";
 // bgColor      = "#FDF6E3";
@@ -93,7 +93,7 @@ function change(node, query, name, set) {
     for (; i--;) list[i].classList[set ? "add" : "remove"](name);
 }
 
-function draw(str, current) {
+function draw(str, current, isEmbed=false) {
     var re = /("(?:((?:https?|file):\/\/(?:\\?\S)+?)|(?:\\?.)*?)")\s*(:?)|-?\d+\.?\d*(?:e[+-]?\d+)?|true|false|null|[[\]{},]|(\S[^-[\]{},"\d]*)/gi;
     var node = document.createElement("div");
     node.classList.add(DIV);
@@ -110,7 +110,11 @@ function draw(str, current) {
 
     node.className = "R" + RAND;
     link.classList.add("L" + RAND);
-    info.classList.add("I" + RAND);
+    if (isEmbed) {
+        info.classList.add("IJSON" + RAND);
+    } else {
+        info.classList.add("I" + RAND);
+    }
 
     parse(str, re);
 
