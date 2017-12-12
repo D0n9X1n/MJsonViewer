@@ -10,7 +10,7 @@
         "32": "icons/icon32.png"
     },
     "options_ui": {
-        "page": "options.html"
+        "page": "options/options.html"
     },
     "permissions": [
         "storage",
@@ -21,17 +21,20 @@
         "webRequestBlocking"
     ],
     "content_scripts": [{
-            "all_frames": true,
-            "matches": [
-                "<all_urls>"
-            ],
-            "js": [
-                "mjsonviewer.js"
-            ],
-            "run_at": "document_end"
-        }
-    ],
+        "all_frames": true,
+        "matches": [
+            "<all_urls>"
+        ],
+        "js": [
+            "scripts/common.js",
+            "scripts/config.js",
+            "scripts/render.js",
+            "scripts/renovate.js",
+            "scripts/dispatcher.js"
+        ],
+        "run_at": "document_end"
+    }],
     "background": {
-        "scripts": ["background.js"]
+        "scripts": ["scripts/rewrite.js"]
     }
 }
