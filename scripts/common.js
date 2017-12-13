@@ -28,7 +28,7 @@ var fontSize; // font-size
 var strictOnly; // only deal with the application/json response
 var hideDetails; // hide the count and size
 var dontBeatify; // hide the [str] or [json]
-
+var strLength; // string length
 // ===========================================
 // DEFAULT VALUES
 // ===========================================
@@ -170,12 +170,6 @@ function draw(str, current, isEmbed=false) {
                     if (match[3]) {
                         node.appendChild(colon.cloneNode());
                     }
-                }
-                if (++i > 1000) {
-                    document.title = (0 | (100 * re.lastIndex / len)) + "% of " + units(len);
-                    return setTimeout(function() {
-                        parse(str, re)
-                    });
                 }
             }
             document.title = "";

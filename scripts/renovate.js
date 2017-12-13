@@ -27,15 +27,16 @@ function onRenovate(result) {
     if (dontBeatify) {
         return;
     }
+    var css = "color:#666; cursor:pointer;";
     var items = document.getElementsByClassName('S' + RAND);
     for (var i = 0; i < items.length; i++) {
         if (isJSON(items[i].innerHTML)) {
-            items[i].setAttribute("content", '<str style="color:#888;"> [→ str ←]  </str><json style="color:#888;"> [← json →]  </json>' + items[i].innerHTML);
             items[i].setAttribute("json", items[i].innerHTML);
-            items[i].innerHTML = '<str style="color:#888;"> [← str →]  </str><json style="color:#888;"> [← json →]  </json>' + items[i].innerHTML.substring(0, 10) + ' ··· ' + items[i].innerHTML.substr(-10, 10);
-        } else if (items[i].innerHTML.length > 300) {
-            items[i].setAttribute("content", '<str style="color:#888;"> [→ str ←]  </str>' + items[i].innerHTML);
-            items[i].innerHTML = '<str style="color:#888;"> [← str →]  </str>' + items[i].innerHTML.substring(0, 10) + ' ··· ' + items[i].innerHTML.substr(-10, 10);
+            items[i].setAttribute("content", '<str style="' + css + '"> [← str →]  </str><json style="' + css + '"> [← json →]  </json>' + items[i].innerHTML.substring(0, 10) + ' ··· ' + items[i].innerHTML.substr(-10, 10));
+            items[i].innerHTML = '<str style="' + css + '"> [→ str ←]  </str><json style="' + css + '"> [← json →]  </json>' + items[i].innerHTML;
+        } else if (items[i].innerHTML.length > strLength) {
+            items[i].setAttribute("content", '<str style="' + css + '"> [← str →]  </str>' + items[i].innerHTML.substring(0, 10) + ' ··· ' + items[i].innerHTML.substr(-10, 10));
+            items[i].innerHTML = '<str style="' + css + '"> [→ str ←]  </str>' + items[i].innerHTML;
         }
     }
 }

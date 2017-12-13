@@ -29,10 +29,6 @@ function setPreviewColor(result) {
     document.querySelector("#strColorLabel").style.color          = result.strColor     || "#2AA198";
     document.querySelector("#keyColorLabel").style.color          = result.keyColor     || "#B58900";
     document.querySelector("#defaultColorLabel").style.color      = result.defaultColor || "#586E75";
-
-    document.querySelector("#strictOnly").checked                 = result.strictOnly   || false;
-    document.querySelector("#hideDetails").checked                = result.hideDetails  || false;
-    document.querySelector("#dontBeatify").checked                = result.dontBeatify  || false;
 }
 
 function onError(error) {
@@ -52,9 +48,9 @@ function saveOptions(e) {
 
         strictOnly:   document.querySelector("#strictOnly").checked,
         hideDetails:  document.querySelector("#hideDetails").checked,
-        dontBeatify:  document.querySelector("#dontBeatify").checked
+        dontBeatify:  document.querySelector("#dontBeatify").checked,
+        strLength:    document.querySelector("#strLength").value,
     });
-    console.log(document.querySelector("#fontSize").value);
     alert("Success");
     browser.storage.local.get().then(setCurrentChoice, onError);
 }
@@ -68,6 +64,7 @@ function setCurrentChoice(result) {
     document.querySelector("#defaultColor").value = result.defaultColor || "#586E75";
     document.querySelector("#fontStyle").value    = result.fontStyle    || "Consolas";
     document.querySelector("#fontSize").value     = result.fontSize     || "14px";
+    document.querySelector("#strLength").value    = result.strLength    || "300";
 
     document.querySelector("#strictOnly").checked  = result.strictOnly   || false;
     document.querySelector("#hideDetails").checked = result.hideDetails  || false;

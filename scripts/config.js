@@ -33,9 +33,10 @@ function onConfig(result) {
         keyColor     = "#B58900";
         defaultColor = "#586E75";
 
-        strictOnly   = false;
-        hideDetails  = false;
-        dontBeatify  = false;
+        strictOnly  = false;
+        hideDetails = false;
+        dontBeatify = false;
+        strLength   = 300;
         return;
     }
     if (result && result[0]) {
@@ -50,6 +51,7 @@ function onConfig(result) {
         strictOnly   = result[0].strictOnly   || false;
         hideDetails  = result[0].hideDetails  || false;
         dontBeatify  = result[0].dontBeatify  || false;
+        strLength    = result[0].strLength    || 300;
     } else {
         fontStyle    = result.fontStyle       || "Consolas";
         fontSize     = result.fontSize        || "14px";
@@ -62,6 +64,7 @@ function onConfig(result) {
         strictOnly   = result.strictOnly      || false;
         hideDetails  = result.hideDetails     || false;
         dontBeatify  = result.dontBeatify     || false;
+        strLength    = result.strLength       || 300;
     }
 
     document.addEventListener("click", function(e) {
