@@ -86,8 +86,8 @@ function onParse(result) {
         tag.textContent = tag.textContent + 'body {background: ' + bgColor + '; color:' + defaultColor + ';}';
         tag.textContent = tag.textContent + '.HIDE {width:200px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }';
         tag.textContent = tag.textContent + '* {font:' + fontSize + ' ' + fontStyle + ' !important;}';
-        tag.textContent = tag.textContent + '.black_overlay{ display: none; position: absolute; top: 0%; left: 0%; width: 100%; height: 100%; background-color: black; z-index:1001; -moz-opacity: 0.6; opacity:.60; filter: alpha(opacity=60); }';
-        tag.textContent = tag.textContent + '.white_content { display: none; position: absolute; top: 10%; left: 15%; width: 70%; height: 80%; padding: 16px; border: 16px solid orange; background-color: white; z-index:1002; overflow: auto; }';
+        tag.textContent = tag.textContent + '.black_overlay{ display: none; position: fixed; top: 0%; left: 0%; width: 100%; height: 100%; background-color: black; z-index:1001; -moz-opacity: 0.6; opacity:.60; filter: alpha(opacity=60); }';
+        tag.textContent = tag.textContent + '.white_content { display: none; position: fixed; top: 10%; left: 13%; width: 70%; min-width: 500px; min-height: 300px; height: 60%; padding: 1%; border: 16px solid orange; background-color: white; z-index:1002; overflow: auto; }';
 
         document.head.appendChild(tag);
     }

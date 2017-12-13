@@ -1,6 +1,6 @@
 MJsonViewer
 ---
-[![GitHub release](https://img.shields.io/badge/release-v3.0-green.svg)](https://github.com/MikeCoder/MJsonViewer)
+[![GitHub release](https://img.shields.io/badge/release-v3.1-green.svg)](https://github.com/MikeCoder/MJsonViewer)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/MikeCoder/MJsonViewer/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/MikeCoder/MJsonViewer/?branch=master)
 
 Yet, just another jsonview plugin for Firefox.
