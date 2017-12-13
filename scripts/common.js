@@ -182,7 +182,7 @@ function draw(str, current, isEmbed=false) {
             JSON.parse(str);
         } catch (e) {
             console.log(e);
-            alert(e);
+            // alert(e);
             // TODO: find a better way to report error
             // tmp = document.createElement("h3");
             // tmp.className = ERR;
