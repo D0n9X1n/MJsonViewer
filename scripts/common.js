@@ -158,12 +158,12 @@ function draw(str, current, isEmbed=false) {
                     node.len += 1;
                     node.appendChild(comma.cloneNode(true));
                 } else {
-                    if (match[2]) {
-                        tmp = link.cloneNode();
-                        tmp.href = match[2].replace(/\\"/g, '"');
-                    } else {
+                    // if (match[2]) {
+                        // tmp = link.cloneNode();
+                        // tmp.href = match[2].replace(/\\"/g, '"');
+                    // } else {
                         tmp = span.cloneNode();
-                    }
+                    // }
                     tmp.textContent = match[1] || val;
                     tmp.classList.add(match[3] ? KEY : match[1] ? STR : match[4] ? ERR : BOOL);
                     node.appendChild(tmp);
@@ -190,7 +190,11 @@ function isJSON(str) {
     if (typeof str == 'string') {
         try {
             var obj = JSON.parse(str);
-            if (str.indexOf('{') > -1) {
+            console.log(JSON.stringify(obj));
+            console.log(JSON.stringify(obj).indexOf('{'));
+            if (JSON.stringify(obj).indexOf('{') == 1
+                || JSON.stringify(obj).indexOf(']') == 1)
+            {
                 return true;
             } else {
                 return false;
