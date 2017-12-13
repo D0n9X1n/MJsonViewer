@@ -1,7 +1,8 @@
 MJsonViewer
 ---
-[![GitHub release](https://img.shields.io/badge/release-v3.3-green.svg)](https://github.com/MikeCoder/MJsonViewer)
+[![GitHub release](https://img.shields.io/badge/release-v3.4-green.svg)](https://github.com/MikeCoder/MJsonViewer)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/MikeCoder/MJsonViewer/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/MikeCoder/MJsonViewer/?branch=master)
+[![Build Status](https://scrutinizer-ci.com/g/MikeCoder/MJsonViewer/badges/build.png?b=master)](https://scrutinizer-ci.com/g/MikeCoder/MJsonViewer/build-status/master)
 
 Yet, just another jsonview plugin for Firefox.
 
