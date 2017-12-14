@@ -95,7 +95,7 @@ function change(node, query, name, set) {
     for (; i--;) list[i].classList[set ? "add" : "remove"](name);
 }
 
-function draw(str, current, isEmbed=false) {
+function draw(str, current, isEmbed = false) {
     var re = /("(?:((?:https?|file):\/\/(?:\\?\S)+?)|(?:\\?.)*?)")\s*(:?)|-?\d+\.?\d*(?:e[+-]?\d+)?|true|false|null|[[\]{},]|(\S[^-[\]{},"\d]*)/gi;
     var node = document.createElement("div");
     node.classList.add(DIV);
@@ -159,10 +159,10 @@ function draw(str, current, isEmbed=false) {
                     node.appendChild(comma.cloneNode(true));
                 } else {
                     // if (match[2]) {
-                        // tmp = link.cloneNode();
-                        // tmp.href = match[2].replace(/\\"/g, '"');
+                    // tmp = link.cloneNode();
+                    // tmp.href = match[2].replace(/\\"/g, '"');
                     // } else {
-                        tmp = span.cloneNode();
+                    tmp = span.cloneNode();
                     // }
                     tmp.textContent = match[1] || val;
                     tmp.classList.add(match[3] ? KEY : match[1] ? STR : match[4] ? ERR : BOOL);
@@ -192,16 +192,11 @@ function isJSON(str) {
             var obj = JSON.parse(str);
             console.log(JSON.stringify(obj));
             console.log(JSON.stringify(obj).indexOf('{'));
-            if (JSON.stringify(obj).indexOf('{') == 1
-                || JSON.stringify(obj).indexOf(']') == 1)
-            {
+            if (JSON.stringify(obj).indexOf('{') == 1 ||
+                JSON.stringify(obj).indexOf(']') == 1) {
                 return true;
-            } else {
-                return false;
             }
-        } catch (e) {
-            return false;
-        }
+        } catch (e) {}
     }
     return false;
 }
