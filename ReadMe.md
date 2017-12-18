@@ -10,6 +10,12 @@ Yet, just another jsonview plugin for Firefox.
 1. I love Firefox.
 2. I find its default jsonviewer is ugly and not directly.
 
+## Why you need this.
+1. Embed Json Viewer.
+2. Json block highlight.
+3. Parse json even if the response header is not json.
+4. Highly customizable! (like themes)
+
 ## How it looks like.
 ### Its common look.
 > ![Appearance](./images/pre.png)

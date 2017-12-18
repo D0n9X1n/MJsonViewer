@@ -50,6 +50,7 @@ function saveOptions(e) {
         hideDetails:  document.querySelector("#hideDetails").checked,
         dontBeatify:  document.querySelector("#dontBeatify").checked,
         strLength:    document.querySelector("#strLength").value,
+        isHighlight:  document.querySelector("#isHighlight").value
     });
     alert("Success");
     browser.storage.local.get().then(setCurrentChoice, onError);
@@ -69,6 +70,7 @@ function setCurrentChoice(result) {
     document.querySelector("#strictOnly").checked  = result.strictOnly   || false;
     document.querySelector("#hideDetails").checked = result.hideDetails  || false;
     document.querySelector("#dontBeatify").checked = result.dontBeatify  || false;
+    document.querySelector("#isHighlight").checked = result.isHighlight  || false;
 
     setPreviewColor(result);
 }

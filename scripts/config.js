@@ -33,10 +33,12 @@ function onConfig(result) {
         keyColor     = "#B58900";
         defaultColor = "#586E75";
 
-        strictOnly  = false;
-        hideDetails = false;
-        dontBeatify = false;
-        strLength   = 300;
+        strictOnly   = false;
+        hideDetails  = false;
+        dontBeatify  = false;
+        isHighlight  = false;
+
+        strLength    = 300;
         return;
     }
     if (result && result[0]) {
@@ -51,20 +53,22 @@ function onConfig(result) {
         strictOnly   = result[0].strictOnly   || false;
         hideDetails  = result[0].hideDetails  || false;
         dontBeatify  = result[0].dontBeatify  || false;
+        isHighlight  = result[0].isHighlight  || false;
         strLength    = result[0].strLength    || 300;
     } else {
-        fontStyle    = result.fontStyle       || "Consolas";
-        fontSize     = result.fontSize        || "14px";
-        bgColor      = result.bgColor         || "#FDF6E3";
-        intColor     = result.intColor        || "#657A81";
-        strColor     = result.strColor        || "#2AA198";
-        keyColor     = result.keyColor        || "#B58900";
-        defaultColor = result.defaultColor    || "#586E75";
+        fontStyle    = result.fontStyle    || "Consolas";
+        fontSize     = result.fontSize     || "14px";
+        bgColor      = result.bgColor      || "#FDF6E3";
+        intColor     = result.intColor     || "#657A81";
+        strColor     = result.strColor     || "#2AA198";
+        keyColor     = result.keyColor     || "#B58900";
+        defaultColor = result.defaultColor || "#586E75";
 
-        strictOnly   = result.strictOnly      || false;
-        hideDetails  = result.hideDetails     || false;
-        dontBeatify  = result.dontBeatify     || false;
-        strLength    = result.strLength       || 300;
+        strictOnly   = result.strictOnly   || false;
+        hideDetails  = result.hideDetails  || false;
+        dontBeatify  = result.dontBeatify  || false;
+        isHighlight  = result.isHighlight  || false;
+        strLength    = result.strLength    || 300;
     }
 
     document.addEventListener("click", function(e) {
@@ -118,7 +122,15 @@ function onConfig(result) {
             fadeDiv.parentElement.removeChild(fadeDiv);
             var lightDiv = document.getElementById("light");
             lightDiv.parentElement.removeChild(lightDiv);
+        } else if (target.className.toUpperCase() == DIV.toUpperCase()) {
+            if (isHighlight) {
+                if (target.style.borderLeft) {
+                    target.removeAttribute("style");
+                } else {
+                    target.style = "border-left:1px solid";
+                }
+            }
+            console.log(target);
         }
     }, true);
 }
-
