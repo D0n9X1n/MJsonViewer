@@ -32,7 +32,7 @@ function setPreviewColor(result) {
 }
 
 function onError(error) {
-    console.log(`Error: ${error}`);
+    alert(`Error: ${error}`);
 }
 
 function saveOptions(e) {
@@ -47,10 +47,11 @@ function saveOptions(e) {
         fontSize:     document.querySelector("#fontSize").value,
         strLength:    document.querySelector("#strLength").value,
 
-        strictOnly:   document.querySelector("#strictOnly").checked,
-        hideDetails:  document.querySelector("#hideDetails").checked,
-        dontBeatify:  document.querySelector("#dontBeatify").checked,
-        isHighlight:  document.querySelector("#isHighlight").checked
+        strictOnly:  document.querySelector("#strictOnly").checked,
+        hideDetails: document.querySelector("#hideDetails").checked,
+        dontBeatify: document.querySelector("#dontBeatify").checked,
+        isHighlight: document.querySelector("#isHighlight").checked,
+        isDebug:     document.querySelector("#isDebug").checked
     });
     alert("Success");
     browser.storage.local.get().then(setCurrentChoice, onError);
@@ -71,6 +72,7 @@ function setCurrentChoice(result) {
     document.querySelector("#hideDetails").checked = result.hideDetails  || false;
     document.querySelector("#dontBeatify").checked = result.dontBeatify  || false;
     document.querySelector("#isHighlight").checked = result.isHighlight  || false;
+    document.querySelector("#isDebug").checked     = result.isDebug      || false;
 
     setPreviewColor(result);
 }

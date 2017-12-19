@@ -29,6 +29,7 @@ var strictOnly; // only deal with the application/json response
 var hideDetails; // hide the count and size
 var dontBeatify; // hide the [str] or [json]
 var strLength; // string length
+var isDebug; // debug mode
 // ===========================================
 // DEFAULT VALUES
 // ===========================================
@@ -40,21 +41,18 @@ var STR  = "S" + RAND;
 var BOOL = "B" + RAND;
 var ERR  = "E" + RAND;
 var COLL = "C" + RAND;
-// fontStyle    = "Consolas";
-// bgColor      = "#FDF6E3";
-// intColor     = "#657A81";
-// strColor     = "#2AA198";
-// keyColor     = "#B58900";
-// defaultColor = "#586E75";
-// strictOnly   = false;
-// hideDetails  = false;
-// dontBeatify  = false;
 
 // ===========================================
 // COMMON FUNCTIONS
 // ===========================================
 function onError(result, error) {
     console.log(result);
+}
+
+function dlog(target) {
+    if (isDebug) {
+        console.log(target);
+    }
 }
 
 function reconvert(str) {
@@ -174,7 +172,7 @@ function draw(str, current, isEmbed = false) {
             document.title = "";
             JSON.parse(str);
         } catch (e) {
-            console.log(e);
+            dlog(e);
             // TODO: find a better way to report error
         }
     }

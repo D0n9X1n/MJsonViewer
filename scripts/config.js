@@ -24,7 +24,7 @@
 // ===========================================
 function onConfig(result) {
     if (!result) {
-        console.log("No Config find");
+        dlog("No Config find");
         fontStyle    = "Consolas";
         fontSize     = "14px";
         bgColor      = "#FDF6E3";
@@ -37,6 +37,7 @@ function onConfig(result) {
         hideDetails  = false;
         dontBeatify  = false;
         isHighlight  = false;
+        isDebug      = false;
 
         strLength    = 300;
         return;
@@ -54,6 +55,7 @@ function onConfig(result) {
         hideDetails  = result[0].hideDetails  || false;
         dontBeatify  = result[0].dontBeatify  || false;
         isHighlight  = result[0].isHighlight  || false;
+        isDebug      = result[0].isDebug      || false;
         strLength    = result[0].strLength    || 300;
     } else {
         fontStyle    = result.fontStyle    || "Consolas";
@@ -68,6 +70,7 @@ function onConfig(result) {
         hideDetails  = result.hideDetails  || false;
         dontBeatify  = result.dontBeatify  || false;
         isHighlight  = result.isHighlight  || false;
+        isDebug      = result.isDebug      || false;
         strLength    = result.strLength    || 300;
     }
 
