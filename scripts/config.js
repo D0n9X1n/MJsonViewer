@@ -72,13 +72,10 @@ function onConfig(result) {
     }
 
     document.addEventListener("click", function(e) {
-        console.log(e);
         var target = e.target;
         if (target.tagName.toUpperCase() == "I") {
             var isClose = target.classList.contains(COLL);
-            console.log(isClose);
             var classname = target.classList[0];
-            console.log(classname);
             if (isClose) {
                 target.removeAttribute("class");
                 target.setAttribute("class", classname);
@@ -130,7 +127,6 @@ function onConfig(result) {
                     target.style = "border-left:1px solid";
                 }
             }
-            console.log(target);
         }
     }, true);
 }
