@@ -45,12 +45,12 @@ function saveOptions(e) {
         defaultColor: document.querySelector("#defaultColor").value,
         fontStyle:    document.querySelector("#fontStyle").value,
         fontSize:     document.querySelector("#fontSize").value,
+        strLength:    document.querySelector("#strLength").value,
 
         strictOnly:   document.querySelector("#strictOnly").checked,
         hideDetails:  document.querySelector("#hideDetails").checked,
         dontBeatify:  document.querySelector("#dontBeatify").checked,
-        strLength:    document.querySelector("#strLength").value,
-        isHighlight:  document.querySelector("#isHighlight").value
+        isHighlight:  document.querySelector("#isHighlight").checked
     });
     alert("Success");
     browser.storage.local.get().then(setCurrentChoice, onError);
