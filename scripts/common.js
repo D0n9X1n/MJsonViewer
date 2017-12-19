@@ -138,12 +138,16 @@ function draw(str, current, isEmbed = false) {
                 } else if ((val == "}" || val == "]") && node.len) {
                     if (node.childNodes.length) {
                         tmp = info.cloneNode();
-                        if (!hideDetails) {
-                            tmp.dataset.content = node.len + (
-                                node.len == 1 ?
-                                (val == "]" ? " item, " : " property, ") :
-                                (val == "]" ? " items, " : " properties, ")
-                            ) + units(re.lastIndex - node.start + 1);
+                        var content = node.len + (
+                            node.len == 1 ?
+                            (val == "]" ? " item, " : " property, ") :
+                            (val == "]" ? " items, " : " properties, ")
+                        ) + units(re.lastIndex - node.start + 1);
+
+                        if (hideDetails) {
+                            tmp.setAttribute("title", content);
+                        } else {
+                            tmp.dataset.content = content;
                         }
 
                         if ((val = node.previousElementSibling) && val.className == KEY) {
@@ -158,12 +162,7 @@ function draw(str, current, isEmbed = false) {
                     node.len += 1;
                     node.appendChild(comma.cloneNode(true));
                 } else {
-                    // if (match[2]) {
-                    // tmp = link.cloneNode();
-                    // tmp.href = match[2].replace(/\\"/g, '"');
-                    // } else {
                     tmp = span.cloneNode();
-                    // }
                     tmp.textContent = match[1] || val;
                     tmp.classList.add(match[3] ? KEY : match[1] ? STR : match[4] ? ERR : BOOL);
                     node.appendChild(tmp);
@@ -176,12 +175,7 @@ function draw(str, current, isEmbed = false) {
             JSON.parse(str);
         } catch (e) {
             console.log(e);
-            // alert(e);
             // TODO: find a better way to report error
-            // tmp = document.createElement("h3");
-            // tmp.className = ERR;
-            // tmp.textContent = e;
-            // box.insertBefore(tmp, box.firstChild);
         }
     }
 }
@@ -190,8 +184,6 @@ function isJSON(str) {
     if (typeof str == 'string') {
         try {
             var obj = JSON.parse(str);
-            console.log(JSON.stringify(obj));
-            console.log(JSON.stringify(obj).indexOf('{'));
             if (JSON.stringify(obj).indexOf('{') == 1 ||
                 JSON.stringify(obj).indexOf(']') == 1) {
                 return true;

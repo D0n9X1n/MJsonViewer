@@ -56,7 +56,6 @@ function onParse(result) {
         }
     }
 
-
     function init() {
         if (tag) {
             return;
@@ -65,7 +64,7 @@ function onParse(result) {
         tag = document.createElement("style");
         tag.textContent = [
             '.R', ',.D', '{font:' + fontSize + ' ' + fontStyle + '}' +
-            '.D', '{margin-left:6px; padding-left:1em; margin-top: 1px; border-left:1px dashed; border-color: #93A1A1;}' +
+            '.D', '{margin-left:0.5em; padding-left:2em; margin-top: 1px; border-left:1px dashed; border-color: #93A1A1;}' +
             '.X', '{border:1px solid #ccc; padding:1em}' +
             'a.L', '{text-decoration:none}' +
             'a.L', ':hover,a.L', ':focus{text-decoration:underline}' +
@@ -73,7 +72,6 @@ function onParse(result) {
             'i.H', ',i.I', ':hover{text-shadow: 1px 1px 3px #999; color:#333}' +
             'i.I', ':before{content:" ▼ "}' +
             'i.C', ':before{content:" ▶ "}' +
-            'i.I', ':after{content:attr(data-content)}' +
             'i.C', '+.D', '{width:1px; height:1px; margin:0; padding:0; border:0; display:inline-block; overflow:hidden}' +
             '.S', '{color:' + strColor + '}' + // string
             '.K', '{color:' + keyColor + '}' + // key
@@ -83,13 +81,14 @@ function onParse(result) {
             'h3.E', '{margin:0 0 1em}'
         ].join(RAND);
 
-        tag.textContent = tag.textContent + 'body {background: ' + bgColor + '; color:' + defaultColor + ';}';
-        tag.textContent = tag.textContent + '.HIDE {width:200px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }';
-        tag.textContent = tag.textContent + '* {font:' + fontSize + ' ' + fontStyle + ' !important;}';
-        tag.textContent = tag.textContent + '.black_overlay{ display: none; position: fixed; top: 0%; left: 0%; width: 100%; height: 100%; background-color: black; z-index:1001; -moz-opacity: 0.6; opacity:.60; filter: alpha(opacity=60); }';
-        tag.textContent = tag.textContent + '.white_content { display: none; position: fixed; top: 10%; left: 13%; width: 70%; min-width: 500px; min-height: 300px; height: 60%; padding: 1%; border: 16px solid orange; background-color: white; z-index:1002; overflow: auto; }';
-        tag.textContent = tag.textContent + 'str:hover{text-shadow: 1px 1px 3px #999; color:#333}';
-        tag.textContent = tag.textContent + 'json:hover{text-shadow: 1px 1px 3px #999; color:#333}';
+        tag.textContent += 'i.I' + RAND + ':after{content:attr(data-content)}';
+        tag.textContent += 'body {background: ' + bgColor + '; color:' + defaultColor + ';}';
+        tag.textContent += '.HIDE {width:200px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }';
+        tag.textContent += '* {font:' + fontSize + ' ' + fontStyle + ' !important;}';
+        tag.textContent += '.black_overlay{ display: none; position: fixed; top: 0%; left: 0%; width: 100%; height: 100%; background-color: black; z-index:1001; -moz-opacity: 0.6; opacity:.60; filter: alpha(opacity=60); }';
+        tag.textContent += '.white_content { display: none; position: fixed; top: 10%; left: 13%; width: 70%; min-width: 500px; min-height: 300px; height: 60%; padding: 1%; border: 16px solid orange; background-color: white; z-index:1002; overflow: auto; }';
+        tag.textContent += 'str:hover{text-shadow: 1px 1px 3px #999; color:#333}';
+        tag.textContent += 'json:hover{text-shadow: 1px 1px 3px #999; color:#333}';
 
         document.head.appendChild(tag);
     }
