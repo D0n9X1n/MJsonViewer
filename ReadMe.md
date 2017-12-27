@@ -4,7 +4,7 @@ MJsonViewer
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/MikeCoder/MJsonViewer/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/MikeCoder/MJsonViewer/?branch=master)
 [![Build Status](https://scrutinizer-ci.com/g/MikeCoder/MJsonViewer/badges/build.png?b=master)](https://scrutinizer-ci.com/g/MikeCoder/MJsonViewer/build-status/master)
 
-Yet, just another jsonview plugin for Firefox.
+Yet, just another json content viewer plugin for Firefox.
 
 ## Why I write this plugin.
 1. I love Firefox.
