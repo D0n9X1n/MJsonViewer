@@ -40,7 +40,7 @@ function onParse(result) {
         try {
             if (jsonRe.test(body.textContent)) {
                 init();
-                draw(first.textContent, body);
+                draw(body.textContent, body);
             }
         } catch (e) {
             dlog(e);
