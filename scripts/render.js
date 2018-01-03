@@ -27,6 +27,7 @@ function onParse(result) {
     var body = document.body;
     var str, jsonpMatch, tag;
 
+    console.log(strictOnly);
     if (strictOnly) {
         // only render when the contentType is json
         if (/[+\/]json$/i.test(document.contentType)) {
@@ -36,23 +37,14 @@ function onParse(result) {
         }
     } else {
         // check whether the content is json or like json
-        first = body && body.firstChild;
-        if (first &&
-            (first.tagName == "PRE" &&
-                first == body.lastElementChild ||
-                first == body.lastChild &&
-                first.nodeType == 3) &&
-            (str = first.textContent) &&
-            (/[+\/]json$/i.test(document.contentType) ||
-                (jsonpMatch = /^\s*((?:\/\*\*\/\s*)?([$a-z_][$\w]*)\s*(?:&&\s*\2\s*)?\()([^]+)(\)[\s;]*)$/i.exec(str)) &&
-                jsonRe.test(jsonpMatch[3]) || jsonRe.test(str))) {
-            if (jsonpMatch) {
-                str = jsonpMatch[3];
-                body.replaceChild(fragment(jsonpMatch[1], jsonpMatch[4]), first);
-                first = body.lastChild.previousSibling;
+        try {
+            if (jsonRe.test(body.textContent)) {
+                init();
+                draw(first.textContent, body);
             }
-            init();
-            draw(str, body);
+        } catch (e) {
+            dlog(e);
+            // ignore
         }
     }
 
@@ -93,4 +85,3 @@ function onParse(result) {
         document.head.appendChild(tag);
     }
 }
-
