@@ -27,7 +27,7 @@ function onParse(result) {
     var body = document.body;
     var str, jsonpMatch, tag;
 
-    console.log(strictOnly);
+    dlog("strict mode:" + strictOnly);
     if (strictOnly) {
         // only render when the contentType is json
         if (/[+\/]json$/i.test(document.contentType)) {
