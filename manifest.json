@@ -27,6 +27,7 @@
             "<all_urls>"
         ],
         "js": [
+            "scripts/utils.js",
             "scripts/common.js",
             "scripts/config.js",
             "scripts/render.js",
