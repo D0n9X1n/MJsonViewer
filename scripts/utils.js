@@ -1,0 +1,82 @@
+// ////////////////////////////////////////////////////////////////////////////////////
+// Copyright © 2017 TangDongxin
+//
+// Permission is hereby granted, free of charge, to any person obtaining
+// A copy of this software and associated documentation files (the "Software"),
+// To deal in the Software without restriction, including without limitation
+// The rights to use, copy, modify, merge, publish, distribute, sublicense,
+// And/or sell copies of the Software, and to permit persons to whom the
+// Software is furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included
+// In all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+// EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+// OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+// IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+// TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE
+// OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+// ////////////////////////////////////////////////////////////////////////////////////
+
+
+// ===========================================
+// UTIL TOOLS
+// ===========================================
+
+
+function isBASE64 (str) {
+
+  try {
+
+    const res = new Buffer(a, 'base64').toString();
+    return res != undefined;
+
+  } catch (e) {
+
+    return false;
+
+  }
+
+}
+
+function isJSON (str) {
+
+  if (typeof str === 'string') {
+
+    try {
+
+      const obj = JSON.parse(str);
+      if (JSON.stringify(obj).indexOf('{') == 1 ||
+                JSON.stringify(obj).indexOf(']') == 1) {
+
+        return true;
+
+      }
+
+    } catch (e) {}
+
+  }
+  return false;
+
+}
+
+function isLink (str) {
+
+  if (str.startsWith('http') || str.startsWith('mailto') || str.startsWith('\'http') || str.startsWith('"http')) {
+
+    str = eval(str);
+
+  }
+  const regex = /^http(s)?:\/\/([\w-]+\.)+[\w-]+(\/[\w- ./?%&=]*)?$/;
+  return regex.test(str);
+
+}
+
+
+function showPopup (str, div) {
+
+  div.innerHTML = str;
+
+}
