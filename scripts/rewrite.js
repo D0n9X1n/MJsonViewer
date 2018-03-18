@@ -1,4 +1,4 @@
-// ////////////////////////////////////////////////////////////////////////////////////
+// ////////////////////////////////////////////////////////////////////////////////////{{{
 // Copyright © 2017 TangDongxin
 //
 // Permission is hereby granted, free of charge, to any person obtaining
@@ -18,19 +18,41 @@
 // DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
 // TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE
 // OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-// ////////////////////////////////////////////////////////////////////////////////////
+// ////////////////////////////////////////////////////////////////////////////////////}}}
 
 // ===========================================
 // JSON HEADER REWRITE
 // ===========================================
 
+let strictOnly;
+let isDebug;
+
+function onError (e) {
+
+  console.log(e);
+
+}
+
 function findJsonMimeType (header) {
+
+  if (strictOnly) {
+
+    if (isDebug) {
+
+      console.log('strict mode Only');
+
+    }
+
+    return false;
+
+  }
 
   if (header.name === undefined) {
 
     return false;
 
   }
+
   return header.name.toLowerCase() === 'content-type' && header.value.includes('json');
 
 }
@@ -57,11 +79,53 @@ function addJsonHandler (request) {
 
 }
 
-browser.webRequest.onHeadersReceived.addListener(
-  addJsonHandler, {
-    'urls': ['<all_urls>', ],
-  }, [
-    'blocking',
-    'responseHeaders',
-  ]
-);
+function onConfig (result) {
+
+  if (!result) {
+
+    strictOnly = false;
+    isDebug = false;
+
+  }
+  if (result && result[0]) {
+
+    strictOnly = result[0].strictOnly || false;
+    isDebug = result[0].isDebug || false;
+
+  } else {
+
+    strictOnly = result.strictOnly || false;
+    isDebug = result.isDebug || false;
+
+  }
+
+}
+
+function onRecv () {
+
+  browser.webRequest.onHeadersReceived.addListener(
+    addJsonHandler, {
+      'urls': ['<all_urls>', ],
+    }, [
+      'blocking',
+      'responseHeaders',
+    ]
+  );
+
+}
+
+browser.storage.onChanged.addListener(function (changes, areaName) {
+
+  if (areaName != 'local') {
+
+    return;
+
+  }
+
+  isDebug = changes.isDebug.newValue;
+  strictOnly = changes.strictOnly.newValue;
+
+});
+
+const getting = browser.storage.local.get();
+getting.then(onConfig, onError).then(onRecv, onError);

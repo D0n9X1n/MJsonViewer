@@ -24,7 +24,7 @@
 // ===========================================
 function onConfig (result) {
 
-  if (!result) {
+  if (!result) { // {{{
 
     dlog('No Config find');
     fontStyle = 'Consolas';
@@ -44,8 +44,9 @@ function onConfig (result) {
     strLength = 300;
     return;
 
-  }
-  if (result && result[0]) {
+  }// }}}
+
+  if (result && result[0]) { // {{{
 
     fontStyle = result[0].fontStyle || 'Consolas';
     fontSize = result[0].fontSize || '14px';
@@ -79,14 +80,21 @@ function onConfig (result) {
     isDebug = result.isDebug || false;
     strLength = result.strLength || 300;
 
-  }
+  }// }}}
 
   document.addEventListener('click', function (e) {
+
+    dlog(document.contentType);
+    if (!document.contentType.includes('json')) {
+
+      return;
+
+    }
 
     dlog(e);
 
     const target = e.target;
-    if (target.tagName.toUpperCase() == 'I') {
+    if (target.tagName.toUpperCase() == 'I') { // {{{
 
       const isClose = target.classList.contains(COLL);
       const classname = target.classList[0];
@@ -102,15 +110,17 @@ function onConfig (result) {
 
       }
       e.preventDefault();
+      // }}}
 
-    } else if (target.tagName.toUpperCase() == 'STR') {
+    } else if (target.tagName.toUpperCase() == 'STR') { // {{{
 
       var parentElement = target.parentElement;
       const originStr = parentElement.innerHTML;
       parentElement.innerHTML = parentElement.getAttribute('content');
       parentElement.setAttribute('content', originStr);
+      // }}}
 
-    } else if (target.tagName.toUpperCase() == 'JSON') {
+    } else if (target.tagName.toUpperCase() == 'JSON') { // {{{
 
       if (document.getElementById('light')) {
 
@@ -140,15 +150,17 @@ function onConfig (result) {
       document.getElementById('light').style.display = 'block';
       document.getElementById('fade').style.display = 'block';
       draw(eval(parentElement.getAttribute('json')), lightDiv);
+      // }}}
 
-    } else if (target.classList.contains('black_overlay')) {
+    } else if (target.classList.contains('black_overlay')) { // {{{
 
       var fadeDiv = document.getElementById('fade');
       fadeDiv.parentElement.removeChild(fadeDiv);
       var lightDiv = document.getElementById('light');
       lightDiv.parentElement.removeChild(lightDiv);
+      // }}}
 
-    } else if (target.className.toUpperCase() == DIV.toUpperCase()) {
+    } else if (target.className.toUpperCase() == DIV.toUpperCase()) { // {{{
 
       if (isHighlight) {
 
@@ -163,12 +175,14 @@ function onConfig (result) {
         }
 
       }
+      // }}}
 
-    } else if (target.tagName.toUpperCase() === 'URL') {
+    } else if (target.tagName.toUpperCase() === 'URL') { // {{{
 
       url = target.parentElement.getAttribute('url');
       dlog(`go:${ url}`);
       window.open(url);
+      // }}}
 
     }
 
