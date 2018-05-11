@@ -47,15 +47,34 @@ function isJSON (str) {
 
     try {
 
-      const obj = JSON.parse(str);
-      if (JSON.stringify(obj).indexOf('{') == 1 ||
-                JSON.stringify(obj).indexOf(']') == 1) {
+      if (str[0] == '"') {
+
+        str = eval(str);
+
+      }
+
+    } catch (e) {
+
+      dlog(e);
+
+    }
+
+
+    try {
+
+      const obj = eval(`(${ str })`);
+
+      if (str[0] == '{' || str[0] == '[') {
 
         return true;
 
       }
 
-    } catch (e) {}
+    } catch (e) {
+
+      dlog(e);
+
+    }
 
   }
   return false;
@@ -69,6 +88,7 @@ function isLink (str) {
     str = eval(str);
 
   }
+
   const regex = /^http(s)?:\/\/([\w-]+\.)+[\w-]+(\/[\w- ./?%&=]*)?$/;
   return regex.test(str);
 

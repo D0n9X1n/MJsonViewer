@@ -24,7 +24,6 @@
 function onParse (result) {
 
   const chrome = this.chrome || this.browser;
-  const jsonRe = /^\s*(?:\[\s*(?=-?\d|true|false|null|["[{])[^]*\]|\{\s*"[^]+\})\s*$/;
   const body = document.body;
   let str, jsonpMatch, tag;
 
@@ -45,7 +44,7 @@ function onParse (result) {
     // Check whether the content is json or like json
     try {
 
-      if (jsonRe.test(body.textContent)) {
+      if (isJSON(body.textContent)) {
 
         init();
         draw(body.textContent, body);
@@ -55,7 +54,6 @@ function onParse (result) {
     } catch (e) {
 
       dlog(e);
-      // Ignore
 
     }
 
