@@ -29,18 +29,20 @@ let strictOnly; // Only deal with the application/json response
 let hideDetails; // Hide the count and size
 let dontBeatify; // Hide the [str] or [json]
 let strLength; // String length
+let isRelaxedJsonSupport; // Support relaxed json or not.
 let isDebug; // Debug mode
+let isJsonThisDocument = false;//
 // ===========================================
 // DEFAULT VALUES
 // ===========================================
 const RAND = 'MIKE';
-const HOV = `H${ RAND}`;
-const DIV = `D${ RAND}`;
-const KEY = `K${ RAND}`;
-const STR = `S${ RAND}`;
-const BOOL = `B${ RAND}`;
-const ERR = `E${ RAND}`;
-const COLL = `C${ RAND}`;
+const HOV = `H${RAND}`;
+const DIV = `D${RAND}`;
+const KEY = `K${RAND}`;
+const STR = `S${RAND}`;
+const BOOL = `B${RAND}`;
+const ERR = `E${RAND}`;
+const COLL = `C${RAND}`;
 
 // ===========================================
 // COMMON FUNCTIONS
@@ -111,8 +113,8 @@ function fragment (div, a, b) {
 
 function change (node, query, name, set) {
 
-  let list = node.querySelectorAll(query),
-    i = list.length;
+  const list = node.querySelectorAll(query);
+  let i = list.length;
   for (; i--;) {
 
     list[i].classList[set ? 'add' : 'remove'](name);
@@ -122,6 +124,8 @@ function change (node, query, name, set) {
 }
 
 function draw (str, current, isEmbed = false) {
+
+  isJsonThisDocument = true;
 
   const re = /("(?:((?:https?|file):\/\/(?:\\?\S)+?)|(?:\\?.)*?)")\s*(:?)|-?\d+\.?\d*(?:e[+-]?\d+)?|true|false|null|[[\]{},]|(\S[^-[\]{},"\d]*)/gi;
   let node = document.createElement('div');
@@ -137,15 +141,15 @@ function draw (str, current, isEmbed = false) {
     '[': fragment(node, '[', ']'),
   };
 
-  node.className = `R${ RAND}`;
-  link.classList.add(`L${ RAND}`);
+  node.className = `R${RAND}`;
+  link.classList.add(`L${RAND}`);
   if (isEmbed) {
 
-    info.classList.add(`IJSON${ RAND}`);
+    info.classList.add(`IJSON${RAND}`);
 
   } else {
 
-    info.classList.add(`I${ RAND}`);
+    info.classList.add(`I${RAND}`);
 
   }
 
@@ -156,7 +160,7 @@ function draw (str, current, isEmbed = false) {
   function parse (str, re) {
 
     str = reconvert(str);
-    let match, val, tmp, i = 0;
+    let match; let val; let tmp; const i = 0;
     const len = str.length;
     try {
 

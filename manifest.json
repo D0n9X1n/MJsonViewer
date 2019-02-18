@@ -1,7 +1,7 @@
 {
     "manifest_version": 2,
     "name": "MJsonViewer",
-    "version": "3.15",
+    "version": "4.0",
     "author": "Mike",
     "description": "Yet, just another jsonviewer plugin for Firefox.",
     "icons": {
@@ -27,6 +27,7 @@
             "<all_urls>"
         ],
         "js": [
+            "scripts/lib/relaxed-json.js",
             "scripts/utils.js",
             "scripts/common.js",
             "scripts/config.js",

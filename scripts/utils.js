@@ -55,7 +55,8 @@ function isJSON (str) {
 
     } catch (e) {
 
-      dlog(e);
+      // here we just ignore the result
+      // dlog(e);
 
     }
 

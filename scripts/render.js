@@ -25,17 +25,28 @@ function onParse (result) {
 
   const chrome = this.chrome || this.browser;
   const body = document.body;
-  let str, jsonpMatch, tag;
+  let str; let jsonpMatch; let tag;
 
-  dlog(`strict mode:${ strictOnly}`);
+  let content = body.textContent;
+
+  dlog(`is relaxed json support: ${isRelaxedJsonSupport}, ${content}`);
+  if (isRelaxedJsonSupport) {
+
+    content = transform(content);
+
+    dlog(`after transform ${content}`);
+
+  }
+
+
+  dlog(`strict mode:${strictOnly}`);
   if (strictOnly) {
 
     // Only render when the contentType is json
     if (/[+\/]json$/i.test(document.contentType)) {
 
       init();
-      str = body.textContent;
-      draw(str, body);
+      draw(content, body);
 
     }
 
@@ -44,10 +55,10 @@ function onParse (result) {
     // Check whether the content is json or like json
     try {
 
-      if (isJSON(body.textContent)) {
+      if (isJSON(content)) {
 
         init();
-        draw(body.textContent, body);
+        draw(content, body);
 
       }
 

@@ -40,6 +40,7 @@ function onConfig (result) {
     dontBeatify = false;
     isHighlight = false;
     isDebug = false;
+    isRelaxedJsonSupport = false;
 
     strLength = 300;
     return;
@@ -61,6 +62,7 @@ function onConfig (result) {
     dontBeatify = result[0].dontBeatify || false;
     isHighlight = result[0].isHighlight || false;
     isDebug = result[0].isDebug || false;
+    isRelaxedJsonSupport = result[0].isRelaxedJsonSupport || false;
     strLength = result[0].strLength || 300;
 
   } else {
@@ -78,14 +80,15 @@ function onConfig (result) {
     dontBeatify = result.dontBeatify || false;
     isHighlight = result.isHighlight || false;
     isDebug = result.isDebug || false;
+    isRelaxedJsonSupport = result.isRelaxedJsonSupport || false;
     strLength = result.strLength || 300;
 
   }// }}}
 
   document.addEventListener('click', function (e) {
 
-    dlog(document.contentType);
-    if (!document.contentType.includes('json')) {
+    dlog(`is the plugin do job: ${isJsonThisDocument}`);
+    if (!isJsonThisDocument) {
 
       return;
 

@@ -43,20 +43,21 @@ function saveOptions (e) {
 
   e.preventDefault();
   browser.storage.local.set({
-    'bgColor':      document.querySelector('#bgColor').value,
-    'intColor':     document.querySelector('#intColor').value,
-    'strColor':     document.querySelector('#strColor').value,
-    'keyColor':     document.querySelector('#keyColor').value,
-    'defaultColor': document.querySelector('#defaultColor').value,
-    'fontStyle':    document.querySelector('#fontStyle').value,
-    'fontSize':     document.querySelector('#fontSize').value,
-    'strLength':    document.querySelector('#strLength').value,
+    'bgColor':              document.querySelector('#bgColor').value,
+    'intColor':             document.querySelector('#intColor').value,
+    'strColor':             document.querySelector('#strColor').value,
+    'keyColor':             document.querySelector('#keyColor').value,
+    'defaultColor':         document.querySelector('#defaultColor').value,
+    'fontStyle':            document.querySelector('#fontStyle').value,
+    'fontSize':             document.querySelector('#fontSize').value,
+    'strLength':            document.querySelector('#strLength').value,
 
-    'strictOnly':  document.querySelector('#strictOnly').checked,
-    'hideDetails': document.querySelector('#hideDetails').checked,
-    'dontBeatify': document.querySelector('#dontBeatify').checked,
-    'isHighlight': document.querySelector('#isHighlight').checked,
-    'isDebug':     document.querySelector('#isDebug').checked,
+    'strictOnly':           document.querySelector('#strictOnly').checked,
+    'hideDetails':          document.querySelector('#hideDetails').checked,
+    'dontBeatify':          document.querySelector('#dontBeatify').checked,
+    'isHighlight':          document.querySelector('#isHighlight').checked,
+    'isDebug':              document.querySelector('#isDebug').checked,
+    'isRelaxedJsonSupport': document.querySelector('#isRelaxedJsonSupport').checked,
   });
   alert('Success');
   browser.storage.local.get().then(setCurrentChoice, onError);
@@ -80,6 +81,7 @@ function setCurrentChoice (result) {
   document.querySelector('#dontBeatify').checked = result.dontBeatify || false;
   document.querySelector('#isHighlight').checked = result.isHighlight || false;
   document.querySelector('#isDebug').checked = result.isDebug || false;
+  document.querySelector('#isRelaxedJsonSupport').checked = result.isRelaxedJsonSupport || false;
 
   setPreviewColor(result);
 
