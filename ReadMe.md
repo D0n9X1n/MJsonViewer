@@ -1,6 +1,6 @@
 ## MJsonViewer
 
-[![GitHub release](https://img.shields.io/badge/release-v4.0-green.svg)](https://github.com/MikeCoder/MJsonViewer)
+![GitHub release (latest SemVer including pre-releases)](https://img.shields.io/github/v/release/D0n9x1n/MJsonViewer?include_prereleases)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/MikeCoder/MJsonViewer/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/MikeCoder/MJsonViewer/?branch=master)
 [![Build Status](https://scrutinizer-ci.com/g/MikeCoder/MJsonViewer/badges/build.png?b=master)](https://scrutinizer-ci.com/g/MikeCoder/MJsonViewer/build-status/master)
 
