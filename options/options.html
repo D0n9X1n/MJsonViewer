@@ -1,0 +1,20 @@
+<form style="font-size:15px;">
+    <ul><label id="fontStyleLabel">Font style (default: Consolas):<input type="text" id="fontStyle" value="Consolas"></label></ul>
+    <ul><label id="fontSizeLabel">Font size (default: 14px):<input type="text" id="fontSize" value="14px"></label></ul>
+    <ul><label><font id="bgColorLabel">Background color </font>(default: #FDF6E3):<input type="text" id="bgColor" value="#FDF6E3"></label></ul>
+    <ul><label><font id="intColorLabel">Integer or Boolean color </font>(default: #657A81):<input type="text" id="intColor" value="#657A81"></label></ul>
+    <ul><label><font id="strColorLabel">String color </font>(default: #2AA198):<input type="text" id="strColor" value="#2AA198"></label></ul>
+    <ul><label><font id="keyColorLabel">Key color </font>(default: #B58900):<input type="text" id="keyColor" value="#B58900"></label></ul>
+    <ul><label><font id="defaultColorLabel">Default Text color </font>(default: #586E75):<input type="text" id="defaultColor" value="#586E75"></label></ul>
+    <br>
+    <ul><label><b>Debug mode</b>(Only for the devs):</label><input type="checkbox" id="isDebug" /></ul>
+    <ul><label><b>Strict Mode</b>(Only when the content-type of response is json):</label><input type="checkbox" id="strictOnly" /></ul>
+    <ul><label><b>Hide details</b>(No item count and size):</label><input type="checkbox" id="hideDetails" /></ul>
+    <ul><label><b>Don't beatify result</b>(No more [ str ] or [ json ]):</label><input type="checkbox" id="dontBeatify" /></ul>
+    <ul><label><b>Enable highlight the json block</b>(click on the left line, it will highlight the block):</label><input type="checkbox" id="isHighlight" /></ul>
+    <ul><label><b>Length to enable the string conceal</b>(the length to trigger [ str ]):</label><input id="strLength" /></ul>
+    <ul><label><b>Is relaxed json supported? (To support json like : {json:'releaxed support'}):</label><input type="checkbox" id="isRelaxedJsonSupport" /></ul>
+
+    <ul><button id="save" type="submit" style="width:50%;height:30px">Save</button></ul>
+</form>
+<script src="./options.js"></script>

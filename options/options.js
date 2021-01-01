@@ -12,16 +12,15 @@
 // In all copies or substantial portions of the Software.
 //
 // THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-// EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
-// OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-// IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
-// TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE
-// OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-// ////////////////////////////////////////////////////////////////////////////////////
+  // EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+  // OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+  // IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+  // DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+  // TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE
+  // OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+  // ////////////////////////////////////////////////////////////////////////////////////
 
 function setPreviewColor (result) {
-
   console.log('load Color');
   document.querySelector('#fontStyleLabel').style.fontFamily = result.fontStyle || 'Consolas';
   document.querySelector('#fontSizeLabel').style.fontSize = result.fontSize || '14px';
@@ -30,19 +29,15 @@ function setPreviewColor (result) {
   document.querySelector('#strColorLabel').style.color = result.strColor || '#2AA198';
   document.querySelector('#keyColorLabel').style.color = result.keyColor || '#B58900';
   document.querySelector('#defaultColorLabel').style.color = result.defaultColor || '#586E75';
-
 }
 
 function onError (error) {
-
   alert(`Error: ${error}`);
-
 }
 
 function saveOptions (e) {
-
   e.preventDefault();
-  browser.storage.local.set({
+  browser.storage.sync.set({
     'bgColor':              document.querySelector('#bgColor').value,
     'intColor':             document.querySelector('#intColor').value,
     'strColor':             document.querySelector('#strColor').value,
@@ -60,12 +55,11 @@ function saveOptions (e) {
     'isRelaxedJsonSupport': document.querySelector('#isRelaxedJsonSupport').checked,
   });
   alert('Success');
-  browser.storage.local.get().then(setCurrentChoice, onError);
+  browser.storage.sync.get().then(setCurrentChoice, onError);
 
 }
 
 function setCurrentChoice (result) {
-
   console.log(result);
   document.querySelector('#bgColor').value = result.bgColor || '#FDF6E3';
   document.querySelector('#intColor').value = result.intColor || '#657A81';
@@ -84,13 +78,10 @@ function setCurrentChoice (result) {
   document.querySelector('#isRelaxedJsonSupport').checked = result.isRelaxedJsonSupport || false;
 
   setPreviewColor(result);
-
 }
 
 function restoreOptions () {
-
-  browser.storage.local.get().then(setCurrentChoice, onError);
-
+  browser.storage.sync.get().then(setCurrentChoice, onError);
 }
 
 document.addEventListener('DOMContentLoaded', restoreOptions);
