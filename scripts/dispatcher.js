@@ -22,7 +22,7 @@
 // ===========================================
 // WORK FLOW
 // ===========================================
-const getting = browser.storage.local.get();
+const getting = browser.storage.sync.get();
 getting.then(onConfig, onError)
   .then(onParse, onError)
   .then(onRenovate, onError);
