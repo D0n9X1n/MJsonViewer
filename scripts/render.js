@@ -29,7 +29,6 @@ function onParse(result) {
   let tag;
 
   let content = body.textContent;
-  copyTextToClipboard(content);
 
   dlog(`is relaxed json support: ${isRelaxedJsonSupport}, ${content}`);
   if (isRelaxedJsonSupport) {
@@ -43,6 +42,8 @@ function onParse(result) {
   if (strictOnly) {
     // Only render when the contentType is json
     if (/[+\/]json$/i.test(document.contentType)) {
+      copyTextToClipboard(content);
+
       init();
       draw(content, body);
     }
@@ -51,6 +52,8 @@ function onParse(result) {
     // Check whether the content is json or like json
     try {
       if (isJSON(content)) {
+        copyTextToClipboard(content);
+
         init();
         draw(content, body);
       }

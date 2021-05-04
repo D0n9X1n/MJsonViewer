@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "MJsonViewer",
-  "version": "4.3",
+  "version": "4.4",
   "author": "D0n9X1n",
   "description": "Yet, just another jsonviewer plugin for Firefox.",
   "icons": {
