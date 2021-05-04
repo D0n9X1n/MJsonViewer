@@ -23,48 +23,62 @@
 // ===========================================
 
 
-function onRenovate (result) {
-
+function onRenovate(result) {
   if (dontBeatify) {
-
     return;
-
   }
+
 
   const css = 'color:#666; cursor:pointer;';
   const items = document.getElementsByClassName(`S${RAND}`);
 
   for (let i = 0; i < items.length; i++) {
-
     if (isJSON(items[i].innerHTML)) {
-
       items[i].setAttribute('json', items[i].innerHTML);
-      items[i].setAttribute('content', `<str style="${ css }"> [← str →]  </str><json style="${ css }"> [← json →]  </json>${ items[i].innerHTML.substring(0, 10) } ··· ${ items[i].innerHTML.substr(-10, 10)}`);
-      items[i].innerHTML = `<str style="${ css }"> [→ str ←]  </str><json style="${ css }"> [← json →]  </json>${ items[i].innerHTML}`;
+      items[i].setAttribute(
+        'content',
+        `<str style="${css}"> [← str →]  </str><json style="${
+          css}"> [← json →]  </json>${
+            items[i].innerHTML.substring(
+              0, 10)} ··· ${items[i].innerHTML.substr(-10, 10)}`);
+      items[i].innerHTML
+        = `<str style="${css}"> [→ str ←]  </str><json style="${
+          css}"> [← json →]  </json>${items[i].innerHTML}`;
 
     } else if (items[i].innerHTML.length > strLength) {
-
-
-      items[i].setAttribute('content', `<str style="${ css }"> [← str →]  </str>${ items[i].innerHTML.substring(0, 10) } ··· ${ items[i].innerHTML.substr(-10, 10)}`);
-      items[i].innerHTML = `<str style="${ css }"> [→ str ←]  </str>${ items[i].innerHTML}`;
+      items[i].setAttribute(
+        'content',
+        `<str style="${css}"> [← str →]  </str>${
+          items[i].innerHTML.substring(
+            0, 10)} ··· ${items[i].innerHTML.substr(-10, 10)}`);
+      items[i].innerHTML
+        = `<str style="${css}"> [→ str ←]  </str>${items[i].innerHTML}`;
 
     } else if (isLink(items[i].innerHTML)) {
-
       items[i].setAttribute('url', eval(items[i].innerHTML));
-      items[i].setAttribute('content', `<str style="${ css }"> [← str →]  </str><url style="${ css }"> [← url →]  </url> ${ items[i].innerHTML.substring(0, 10) } ··· ${ items[i].innerHTML.substr(-10, 10)}`);
-      items[i].innerHTML = `<str style="${ css }"> [→ str ←]  </str><url style="${ css }"> [← url →]  </url>${ items[i].innerHTML}`;
+      items[i].setAttribute(
+        'content',
+        `<str style="${css}"> [← str →]  </str><url style="${
+          css}"> [← url →]  </url> ${
+            items[i].innerHTML.substring(
+              0, 10)} ··· ${items[i].innerHTML.substr(-10, 10)}`);
+      items[i].innerHTML = `<str style="${css}"> [→ str ←]  </str><url style="${
+        css}"> [← url →]  </url>${items[i].innerHTML}`;
 
-    } else if(isBASE64(items[i].innerHTML)) {
-
+    } else if (isBASE64(items[i].innerHTML)) {
       continue;
       // TODO to support BASE64
       dlog(items[i]);
       items[i].setAttribute('base64', items[i].innerHTML);
-      items[i].setAttribute('content', `<str style="${ css }"> [← str →]  </str><base64 style="${ css }"> [← base64 →]  </base64>${ items[i].innerHTML.substring(0, 10) } ··· ${ items[i].innerHTML.substr(-10, 10)}`);
-      items[i].innerHTML = `<str style="${ css }"> [→ str ←]  </str><base64 style="${ css }"> [← base64 →]  </base64>${ items[i].innerHTML}`;
-
+      items[i].setAttribute(
+        'content',
+        `<str style="${css}"> [← str →]  </str><base64 style="${
+          css}"> [← base64 →]  </base64>${
+            items[i].innerHTML.substring(
+              0, 10)} ··· ${items[i].innerHTML.substr(-10, 10)}`);
+      items[i].innerHTML
+        = `<str style="${css}"> [→ str ←]  </str><base64 style="${
+          css}"> [← base64 →]  </base64>${items[i].innerHTML}`;
     }
-
   }
-
 }

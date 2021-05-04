@@ -1,43 +1,50 @@
 {
-    "manifest_version": 2,
-    "name": "MJsonViewer",
-    "version": "4.2",
-    "author": "Mike",
-    "description": "Yet, just another jsonviewer plugin for Firefox.",
-    "icons": {
-        "48": "icons/icon48.png",
-        "128": "icons/icon128.png",
-        "32": "icons/icon32.png"
-    },
-    "options_ui": {
-        "page": "options/options.html",
-        "browser_style": true
-    },
-    "permissions": [
-        "storage",
-        "contextMenus",
-        "tabs",
-        "<all_urls>",
-        "webRequest",
-        "webRequestBlocking"
+  "manifest_version": 2,
+  "name": "MJsonViewer",
+  "version": "4.3",
+  "author": "D0n9X1n",
+  "description": "Yet, just another jsonviewer plugin for Firefox.",
+  "icons": {
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png",
+    "32": "icons/icon32.png"
+  },
+  "options_ui": {
+    "page": "options/options.html",
+    "browser_style": true
+  },
+  "permissions": [
+    "storage",
+    "contextMenus",
+    "tabs",
+    "<all_urls>",
+    "webRequest",
+    "webRequestBlocking",
+    "clipboardWrite"
     ],
     "content_scripts": [{
-        "all_frames": true,
-        "matches": [
-            "<all_urls>"
+      "all_frames": true,
+      "matches": [
+        "<all_urls>"
         ],
         "js": [
-            "scripts/lib/relaxed-json.js",
-            "scripts/utils.js",
-            "scripts/common.js",
-            "scripts/config.js",
-            "scripts/render.js",
-            "scripts/renovate.js",
-            "scripts/dispatcher.js"
+          "scripts/lib/relaxed-json.js",
+          "scripts/utils.js",
+          "scripts/common.js",
+          "scripts/config.js",
+          "scripts/render.js",
+          "scripts/renovate.js",
+          "scripts/dispatcher.js"
         ],
         "run_at": "document_end"
     }],
     "background": {
-        "scripts": ["scripts/rewrite.js"]
+      "scripts": ["scripts/rewrite.js"]
+    },
+    "browser_specific_settings": {
+      "gecko": {
+        "id": "MJsonViewer@d0n9x1n.dev",
+        "strict_min_version": "42.0"
+      }
     }
 }

@@ -22,9 +22,8 @@
 // ===========================================
 // READ CONFIG
 // ===========================================
-function onConfig (result) {
-
-  if (!result) { // {{{
+function onConfig(result) {
+  if (!result) {  // {{{
 
     dlog('No Config find');
     fontStyle = 'Consolas';
@@ -45,9 +44,9 @@ function onConfig (result) {
     strLength = 300;
     return;
 
-  }// }}}
+  }  // }}}
 
-  if (result && result[0]) { // {{{
+  if (result && result[0]) {  // {{{
 
     fontStyle = result[0].fontStyle || 'Consolas';
     fontSize = result[0].fontSize || '14px';
@@ -66,7 +65,6 @@ function onConfig (result) {
     strLength = result[0].strLength || 300;
 
   } else {
-
     fontStyle = result.fontStyle || 'Consolas';
     fontSize = result.fontSize || '14px';
     bgColor = result.bgColor || '#FDF6E3';
@@ -83,39 +81,33 @@ function onConfig (result) {
     isRelaxedJsonSupport = result.isRelaxedJsonSupport || false;
     strLength = result.strLength || 300;
 
-  }// }}}
+  }  // }}}
 
-  document.addEventListener('click', function (e) {
-
+  document.addEventListener('click', function(e) {
     dlog(`is the plugin do job: ${isJsonThisDocument}`);
     if (!isJsonThisDocument) {
-
       return;
-
     }
 
     dlog(e);
 
     const target = e.target;
-    if (target.tagName.toUpperCase() == 'I') { // {{{
+    if (target.tagName.toUpperCase() == 'I') {  // {{{
 
       const isClose = target.classList.contains(COLL);
       const classname = target.classList[0];
       if (isClose) {
-
         target.removeAttribute('class');
         target.setAttribute('class', classname);
 
       } else {
-
         target.removeAttribute('class');
-        target.setAttribute('class', `${classname } C${ classname.substring(1)}`);
-
+        target.setAttribute('class', `${classname} C${classname.substring(1)}`);
       }
       e.preventDefault();
       // }}}
 
-    } else if (target.tagName.toUpperCase() == 'STR') { // {{{
+    } else if (target.tagName.toUpperCase() == 'STR') {  // {{{
 
       var parentElement = target.parentElement;
       const originStr = parentElement.innerHTML;
@@ -123,19 +115,15 @@ function onConfig (result) {
       parentElement.setAttribute('content', originStr);
       // }}}
 
-    } else if (target.tagName.toUpperCase() == 'JSON') { // {{{
+    } else if (target.tagName.toUpperCase() == 'JSON') {  // {{{
 
       if (document.getElementById('light')) {
-
         var lightDiv = document.getElementById('light');
         lightDiv.parentElement.removeChild(lightDiv);
-
       }
       if (document.getElementById('fade')) {
-
         var fadeDiv = document.getElementById('fade');
         fadeDiv.parentElement.removeChild(fadeDiv);
-
       }
 
       var parentElement = target.parentElement;
@@ -155,7 +143,7 @@ function onConfig (result) {
       draw(eval(parentElement.getAttribute('json')), lightDiv);
       // }}}
 
-    } else if (target.classList.contains('black_overlay')) { // {{{
+    } else if (target.classList.contains('black_overlay')) {  // {{{
 
       var fadeDiv = document.getElementById('fade');
       fadeDiv.parentElement.removeChild(fadeDiv);
@@ -163,32 +151,24 @@ function onConfig (result) {
       lightDiv.parentElement.removeChild(lightDiv);
       // }}}
 
-    } else if (target.className.toUpperCase() == DIV.toUpperCase()) { // {{{
+    } else if (target.className.toUpperCase() == DIV.toUpperCase()) {  // {{{
 
       if (isHighlight) {
-
         if (target.style.borderLeft) {
-
           target.removeAttribute('style');
 
         } else {
-
           target.style = 'border-left:1px solid';
-
         }
-
       }
       // }}}
 
-    } else if (target.tagName.toUpperCase() === 'URL') { // {{{
+    } else if (target.tagName.toUpperCase() === 'URL') {  // {{{
 
       url = target.parentElement.getAttribute('url');
-      dlog(`go:${ url}`);
+      dlog(`go:${url}`);
       window.open(url);
       // }}}
-
     }
-
   }, true);
-
 }
